@@ -1,4 +1,4 @@
-# GDCompass - STI Risk Analyzer
+# GDCompass™ - STI Risk Analyzer
 
 A modern, responsive web application for assessing sexually transmitted infection (STI) risks and providing personalized testing recommendations.
 

@@ -213,14 +213,15 @@ class GDDOMManager {
     this.elements.mainHeader.style.display = 'block';
     
     if (stepId === GD_CONFIG.STEPS.START) {
-      this.elements.headerDescription.textContent = 'Chỉ với 2 phút, GDCompass™ giúp bạn tìm hiểu nguy cơ mắc bệnh xã hội và các xét nghiệm có thể phù hợp với bạn.';
+      this.elements.headerDescription.innerHTML = 'Chỉ với 2 phút, <span class="gd-soft-highlight">GDCompass™</span> giúp bạn tìm hiểu nguy cơ mắc bệnh xã hội và các xét nghiệm có thể phù hợp với bạn.';
     } else {
-      this.elements.headerDescription.textContent = this.getOriginalDisclaimerText();
+      this.elements.headerDescription.innerHTML = this.getOriginalDisclaimerText();
     }
   }
 
   getOriginalDisclaimerText() {
-    return `GDCompass™ được phát triển bởi GD Health, dựa trên hướng dẫn của Trung tâm Kiểm soát và Phòng ngừa Dịch bệnh Hoa Kỳ (CDC) và Tổ chức Y tế Thế giới (WHO). Ứng dụng này đã được đăng ký bản quyền tác giả tại Cục Bản Quyền Tác Giả. Kết qủa từ GDcompass không thay thế cho việc tư vấn, chẩn đoán, và điều trị của bác sĩ. Tuy nhiên, bạn có thể sử dụng kết quả từ GDcompasss để trao đổi với chuyên gia y tế của chúng tôi và quyết định giải pháp phù hơp nhất cho bạn. GDCompass™ không hỏi thông tin định danh, vì thế bạn có thể hoàn toàn yên tâm. Sự bảo mật thông tin của bạn là ưu tiên hàng đầu của GDHealth!`;
+    return `
+      <span class="gd-soft-highlight">GDCompass™</span> được phát triển bởi GD Health, dựa trên hướng dẫn của Trung tâm Kiểm soát và Phòng ngừa Dịch bệnh Hoa Kỳ (CDC) và Tổ chức Y tế Thế giới (WHO). Ứng dụng này đã được đăng ký bản quyền tác giả tại Cục Bản Quyền Tác Giả. Kết qủa từ <span class="gd-soft-highlight">GDCompass™</span> không thay thế cho việc tư vấn, chẩn đoán, và điều trị của bác sĩ. Tuy nhiên, bạn có thể sử dụng kết quả từ <span class="gd-soft-highlight">GDCompass™</span> để trao đổi với chuyên gia y tế của chúng tôi và quyết định giải pháp phù hơp nhất cho bạn. <span class="gd-soft-highlight">GDCompass™</span> không hỏi thông tin định danh, vì thế bạn có thể hoàn toàn yên tâm. Sự bảo mật thông tin của bạn là ưu tiên hàng đầu của GDHealth!`;
   }
 
   showResults() {
