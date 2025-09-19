@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDHEALTH - STI Risk Analyzer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="gd-body">
+    <div class="gd-container">
+        <header class="gd-header" id="main-header">
+            <h1 class="gd-header__title">Chào mừng bạn đến với GDCompass</h1>
+            <p class="gd-header__description" id="header-description">
+                Chỉ với 2 phút, GDCompass™ giúp bạn hiểu được tình trạng bạn gặp phải và gợi ý các xét nghiệm, giải pháp điều trị và phòng ngừa có thể phù hợp với bạn.
+            </p>
+        </header>
+
+        <main class="gd-main" id="quiz-main">
+            <div class="gd-quiz" id="quiz-container">
+                <!-- Step 1: Start -->
+                <div class="gd-step gd-step--active" id="step-start">
+                    <h2 class="gd-step__title">Chúng tôi có thể giúp gì cho bạn?</h2>
+                    <div class="gd-error gd-error--hidden" id="error-step-start">Vui lòng chọn một lựa chọn.</div>
+                    <div class="gd-options">
+                        <label class="gd-option">
+                            <input type="radio" name="flow" value="has-symptoms" class="gd-option__input">
+                            <div class="gd-option__card">Tôi đang có triệu chứng nhưng không biết mình cần gì</div>
+                        </label>
+                        <label class="gd-option">
+                            <input type="radio" name="flow" value="no-symptoms" class="gd-option__input">
+                            <div class="gd-option__card">Tôi không có triệu chứng nào liên quan đến sức khỏe tình dục nhưng lo sợ nguy cơ mắc bệnh</div>
+                        </label>
+                        <label class="gd-option">
+                            <input type="radio" name="flow" value="diagnosed" class="gd-option__input">
+                            <div class="gd-option__card">Tôi đã được chẩn đoán và đang tìm giải pháp điều trị và phòng ngừa</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Step 2: Genitalia -->
+                <div class="gd-step" id="step-genitalia">
+                    <h2 class="gd-step__title">1. Bộ phận sinh dục của bạn:</h2>
+                    <p class="gd-step__description">Thông tin này quan trọng vì nó liên quan đến vị trí có thể nhiễm bệnh, vị trí lấy mẫu xét nghiệm.</p>
+                    <div class="gd-error gd-error--hidden" id="error-step-genitalia">Vui lòng chọn một lựa chọn.</div>
+                    <div class="gd-options">
+                        <label class="gd-option">
+                            <input type="radio" name="genitalia" value="duong_vat" class="gd-option__input">
+                            <div class="gd-option__card">Dương vật</div>
+                        </label>
+                        <label class="gd-option">
+                            <input type="radio" name="genitalia" value="am_dao" class="gd-option__input">
+                            <div class="gd-option__card">Âm đạo</div>
+                        </label>
+                        <label class="gd-option">
+                            <input type="radio" name="genitalia" value="both" class="gd-option__input">
+                            <div class="gd-option__card">Âm đạo và dương vật</div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Sexual Habits -->
+                <div class="gd-step" id="step-sexual-habit">
+                    <h2 class="gd-step__title">2. Bộ phận sinh dục bạn thường dùng để quan hệ tình dục: (có thể chọn nhiều đáp án)</h2>
+                    <div class="gd-error gd-error--hidden" id="error-step-sexual-habit">Vui lòng chọn ít nhất một lựa chọn.</div>
+                    <div class="gd-checkboxes">
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="habit" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Âm đạo</span>
+                        </label>
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="habit" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Dương vật</span>
+                        </label>
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="habit" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Hậu môn</span>
+                        </label>
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="habit" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Miệng</span>
+                        </label>
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="habit" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Khác</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Step 4: Risk Factors -->
+                <div class="gd-step" id="step-risk-factors">
+                    <h2 class="gd-step__title">3. Trong vòng 6 tháng gần đây, bạn có những hành vi nào: (có thể chọn nhiều đáp án)</h2>
+                    <div class="gd-error gd-error--hidden" id="error-step-risk-factors">Vui lòng chọn ít nhất một lựa chọn.</div>
+                    <div class="gd-checkboxes" id="risk-factors-list">
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="risk" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Bạn có quan hệ tình dục không sử dụng bao cao su hoặc sử dụng không đúng cách.</span>
+                        </label>
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="risk" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Bạn hoặc bạn tình của bạn có nhiều hơn một bạn tình</span>
+                        </label>
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="risk" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Bạn hoặc bạn tình của bạn có tiền sử mắc bệnh lây truyền qua đường tình dục (STD)</span>
+                        </label>
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="risk" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Quan hệ tình dục khi đang dùng rượu, ma tuý hoặc các chất kích thích khác</span>
+                        </label>
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="risk" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Làm nghề liên quan đến tình dục hoặc quan hệ tình dục với người làm nghề này</span>
+                        </label>
+                        <label class="gd-checkbox">
+                            <input type="checkbox" name="risk" id="no-risk-factor" class="gd-checkbox__input">
+                            <span class="gd-checkbox__label">Tôi không có hành vi nào kể trên</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Step 5: Symptom Checklist -->
+                <div class="gd-step" id="step-symptom-checklist">
+                    <h2 class="gd-step__title" id="symptom-checklist-title">4. Bạn đang có các triệu chứng nào dưới đây ? (có thể lựa chọn nhiều đáp án)</h2>
+                    <div class="gd-error gd-error--hidden" id="error-step-symptom-checklist">Vui lòng chọn ít nhất một lựa chọn.</div>
+                    <div class="gd-checkboxes" id="symptoms-list"></div>
+                </div>
+            </div>
+
+            <!-- Results Container -->
+            <div class="gd-results gd-results--hidden" id="results-container"></div>
+
+            <!-- Navigation -->
+            <div class="gd-navigation" id="navigation">
+                <button class="gd-btn gd-btn--secondary gd-btn--hidden" id="prev-btn">Quay lại</button>
+                <button class="gd-btn gd-btn--primary" id="next-btn">Tiếp theo</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+
