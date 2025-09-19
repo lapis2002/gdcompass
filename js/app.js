@@ -317,6 +317,7 @@ class GDResultsGenerator {
 
     domManager.elements.resultsContainer.innerHTML = content;
     this.addBackToStartButton();
+    this.setupDropdownToggle();
   }
 
   static generateDiagnosedResult() {
@@ -339,10 +340,23 @@ class GDResultsGenerator {
       <h2 class="gd-results__title">Kết quả đánh giá</h2>
       <div class="gd-results__content">
         <div class="gd-results__text">
-          Dựa trên thông tin bạn cung cấp, bạn có nguy cơ cao mắc các bệnh xã hội như là Lậu, Chlamydia, Giang mai, HIV...
+          Dựa trên thông tin bạn cung cấp, bạn có nguy cơ cao mắc các bệnh xã hội như là <span class="gd-results__highlight">Lậu</span>, <span class="gd-results__highlight">Chlamydia</span>, <span class="gd-results__highlight">Giang mai</span>, <span class="gd-results__highlight">HIV</span>...
         </div>
         <div class="gd-results__text">
           Tầm soát bệnh xã hội ngay khi có nguy cơ để bảo vệ sức khỏe của bạn. Nếu không được phát hiện và điều trị kịp thời, bệnh có thể dẫn đến tổn thương cơ quan sinh dục, gây vô sinh, và lây lan âm thầm trong cộng đồng.
+        </div>
+        <div class="gd-dropdown" id="medical-info-dropdown">
+          <div class="gd-dropdown__header">
+            <h3 class="gd-dropdown__title">Thông tin y khoa cho bạn</h3>
+            <svg class="gd-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
+          </div>
+          <div class="gd-dropdown__content">
+            <div class="gd-dropdown__body">
+              ${pathogenInfoHtml}
+            </div>
+          </div>
         </div>
         <div class="gd-results__section">
           <h3 class="gd-results__section-title">Xét nghiệm gợi ý cho bạn:</h3>
@@ -396,9 +410,18 @@ class GDResultsGenerator {
         <div class="gd-results__text">
           Bạn cần xét nghiệm ngay để được chẩn đoán và điều trị sớm.
         </div>
-        <div class="gd-results__info-box">
-          <p class="gd-results__text">Thông tin y khoa cho bạn:</p>
-          ${pathogenInfoHtml}
+        <div class="gd-dropdown" id="medical-info-dropdown">
+          <div class="gd-dropdown__header">
+            <h3 class="gd-dropdown__title">Thông tin y khoa cho bạn</h3>
+            <svg class="gd-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
+          </div>
+          <div class="gd-dropdown__content">
+            <div class="gd-dropdown__body">
+              ${pathogenInfoHtml}
+            </div>
+          </div>
         </div>
         <div class="gd-results__section">
           <h3 class="gd-results__section-title">Xét nghiệm gợi ý cho bạn:</h3>
@@ -413,14 +436,30 @@ class GDResultsGenerator {
   }
 
   static generateSpecialSymptomsResult() {
+    const impliedRisks = new Set(['Lậu', 'Chlamydia', 'Giang mai', 'HIV']);
+    const pathogenInfoHtml = this.generatePathogenInfo(impliedRisks, ["Lậu, Chlamydia", "Giang mai", "HIV"]);
+
     return `
       <h2 class="gd-results__title">Kết quả đánh giá</h2>
       <div class="gd-results__content">
         <div class="gd-results__text">
-          Dựa trên thông tin bạn cung cấp, bạn có nguy cơ cao mắc các bệnh xã hội như là Lậu, Chlamydia, Giang mai, HIV...
+          Dựa trên thông tin bạn cung cấp, bạn có nguy cơ cao mắc các bệnh xã hội như là <span class="gd-results__highlight">Lậu</span>, <span class="gd-results__highlight">Chlamydia</span>, <span class="gd-results__highlight">Giang mai</span>, <span class="gd-results__highlight">HIV</span>...
         </div>
         <div class="gd-results__text">
           Tầm soát bệnh xã hội ngay khi có nguy cơ để bảo vệ sức khỏe của bạn. Nếu không được phát hiện và điều trị kịp thời, bệnh có thể dẫn đến tổn thương cơ quan sinh dục, gây vô sinh, và lây lan âm thầm trong cộng đồng.
+        </div>
+        <div class="gd-dropdown" id="medical-info-dropdown">
+          <div class="gd-dropdown__header">
+            <h3 class="gd-dropdown__title">Thông tin y khoa cho bạn</h3>
+            <svg class="gd-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
+          </div>
+          <div class="gd-dropdown__content">
+            <div class="gd-dropdown__body">
+              ${pathogenInfoHtml}
+            </div>
+          </div>
         </div>
         <div class="gd-results__section">
           <h3 class="gd-results__section-title">Xét nghiệm gợi ý cho bạn:</h3>
@@ -537,6 +576,29 @@ class GDResultsGenerator {
     });
     
     domManager.elements.resultsContainer.appendChild(backToStartBtn);
+  }
+
+  static setupDropdownToggle() {
+    const dropdown = document.getElementById('medical-info-dropdown');
+    if (!dropdown) return;
+
+    const header = dropdown.querySelector('.gd-dropdown__header');
+    const content = dropdown.querySelector('.gd-dropdown__content');
+    const icon = dropdown.querySelector('.gd-dropdown__icon');
+
+    header.addEventListener('click', () => {
+      const isExpanded = content.classList.contains('gd-dropdown__content--expanded');
+      
+      if (isExpanded) {
+        // Collapse
+        content.classList.remove('gd-dropdown__content--expanded');
+        icon.classList.remove('gd-dropdown__icon--rotated');
+      } else {
+        // Expand
+        content.classList.add('gd-dropdown__content--expanded');
+        icon.classList.add('gd-dropdown__icon--rotated');
+      }
+    });
   }
 }
 
