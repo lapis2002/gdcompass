@@ -3,7 +3,7 @@
  * Modular JavaScript application with consistent naming conventions
  */
 
-import { GD_CONFIG, GD_SYMPTOMS_DATA, GD_TEST_CODE, DISEASE_CODE, BASIC_TEST_PACKAGES, COMMON_TEST_PACKAGES, HPV_TEST_PACKAGE } from "./constants.js";
+import { GD_CONFIG, GD_SYMPTOMS_DATA, DISEASE_CODE, BASIC_TEST_PACKAGES, COMMON_TEST_PACKAGES, HPV_TEST_PACKAGE } from "./constants.js";
 
 
 // ==========================================================================
@@ -211,6 +211,14 @@ class GDResultsGenerator {
         .join('<div class="gd-results__divider">Hoặc</div>');
   }
 
+  static generateTestSuggestionSection(suggestedTestsHtml) {
+    return `
+       <div class="gd-results__section">
+        <h3 class="gd-results__section-title">Xét nghiệm gợi ý cho bạn:</h3>
+        ${suggestedTestsHtml}
+      </div>
+    `
+  }
   static generateConsultButton() {
     return `<button class="gd-btn gd-btn--primary gd-mt-4">Tư vấn ngay với chuyên gia</button>`;
   }
@@ -249,9 +257,7 @@ class GDResultsGenerator {
         <div class="gd-results__text">
           Tầm soát bệnh xã hội ngay khi có nguy cơ để bảo vệ sức khỏe của bạn. Nếu không được phát hiện và điều trị kịp thời, bệnh có thể dẫn đến tổn thương cơ quan sinh dục, gây vô sinh, và lây lan âm thầm trong cộng đồng.
         </div>
-        <div class="gd-results__section">
-          ${suggestedTestsHtml}
-        </div>
+        ${this.generateTestSuggestionSection(suggestedTestsHtml)}
         <div class="gd-results__section gd-text-center">
           <p class="gd-results__text">Chuyên gia của chúng tôi sẵn sàng lắng nghe và trao đổi trực tiếp với bạn.</p>
           ${this.generateConsultButton()}
@@ -298,11 +304,9 @@ class GDResultsGenerator {
         <div class="gd-results__text">
           Bạn cần xét nghiệm ngay để được chẩn đoán và điều trị sớm.
         </div>
-        ${generatepathogenInfo(pathogenInfoHtml)}
-        <div class="gd-results__section">
-          <h3 class="gd-results__section-title">Xét nghiệm gợi ý cho bạn:</h3>
-          ${suggestedTestsHtml}
-        </div>
+        ${this.generatepathogenInfo(pathogenInfoHtml)}
+        ${this.generateTestSuggestionSection(suggestedTestsHtml)}
+
         <div class="gd-results__section gd-text-center">
           <p class="gd-results__text">Chúng tôi luôn sẵn sàng lắng nghe và đồng hành cùng bạn xuyên suốt mọi giai đoạn - tư vấn, chẩn đoán, điều trị và sau điều trị.</p>
           ${this.generateConsultButton()}
