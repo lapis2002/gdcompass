@@ -342,20 +342,6 @@ class GDResultsGenerator {
   }
 
   static generateSuggestedTests(checkedSymptoms, noSymptom = false) {
-    console.log("suggest test");
-    console.log(checkedSymptoms)
-
-    // const allRisks = new Set();
-    
-    // checkedSymptoms.forEach(cb => {
-    //   const symptomId = cb.getAttribute('data-id');
-    //   const symptomInfo = GD_SYMPTOMS_DATA.find(s => s.id === symptomId);
-    //   if (symptomInfo) {
-    //     symptomInfo.risk.forEach(risk => allRisks.add(risk));
-    //   }
-    // });
-
-    // return allRisks;
     const SUIMAOGA_ID = 's6';
     const specificSymptomsChecked = Array.from(checkedSymptoms).filter(cb => cb.getAttribute('data-id') !== 's12');
     const isOnlySuiMaoGa = specificSymptomsChecked.length === 1 && specificSymptomsChecked[0].getAttribute('data-id') === SUIMAOGA_ID;
@@ -366,25 +352,11 @@ class GDResultsGenerator {
     }
     if (isOnlySuiMaoGa) {
       BASIC_TEST_PACKAGES.map(testPackage => [HPV_TEST_PACKAGE, testPackage].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));      // return `
-      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số"]}</div>
-      //   <div class="gd-results__divider">Hoặc</div>
-      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm cơ bản- 5 chỉ số"]}</div>
-      // `;
     } else if (Array.from(checkedSymptoms).some(cb => cb.getAttribute('data-id') === SUIMAOGA_ID)) {
       COMMON_TEST_PACKAGES.map(testPackage => [HPV_TEST_PACKAGE, testPackage].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
 
-      // return `
-      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm chuyên sâu- 21 chỉ số"]}</div>
-      //   <div class="gd-results__divider">Hoặc</div>
-      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số"]}</div>
-      // `;
     } else {
       COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(testPackage));
-      // return `
-      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm chuyên sâu - 21 chỉ số"]}</div>
-      //   <div class="gd-results__divider">Hoặc</div>
-      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm nâng cao - 16 chỉ số"]}</div>
-      // `;
     }
     return this.generateTestSuggestion(testLists);
 
@@ -413,6 +385,10 @@ class GDResultsGenerator {
     const header = dropdown.querySelector('.gd-dropdown__header');
     const content = dropdown.querySelector('.gd-dropdown__content');
     const icon = dropdown.querySelector('.gd-dropdown__icon');
+
+    // Set initial state as expanded
+    content.classList.add('gd-dropdown__content--expanded');
+    icon.classList.add('gd-dropdown__icon--rotated');
 
     header.addEventListener('click', () => {
       const isExpanded = content.classList.contains('gd-dropdown__content--expanded');
