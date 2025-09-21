@@ -3,7 +3,7 @@
  * Modular JavaScript application with consistent naming conventions
  */
 
-import { GD_CONFIG, GD_SYMPTOMS_DATA } from "./constants.js";
+import { GD_CONFIG, GD_SYMPTOMS_DATA, GD_TEST_CODE, DISEASE_CODE } from "./constants.js";
 // ==========================================================================
 // Configuration and Data
 // ==========================================================================
@@ -240,7 +240,8 @@ class GDResultsGenerator {
 
   static generateNoSymptomsRiskFoundResult() {
     const impliedRisks = new Set(['Lậu', 'Chlamydia', 'Giang mai', 'HIV']);
-    const pathogenInfoHtml = this.generatePathogenInfo(impliedRisks, ["Lậu, Chlamydia", "Giang mai", "HIV"]);
+    const pathogenInfoHtml = this.generatePathogenInfo(impliedRisks);
+    const suggestedTestsHtml = this.generateTestSuggestion([GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]);
 
     return `
       <h2 class="gd-results__title">Kết quả đánh giá</h2>
@@ -265,10 +266,7 @@ class GDResultsGenerator {
           </div>
         </div>
         <div class="gd-results__section">
-          <h3 class="gd-results__section-title">Xét nghiệm gợi ý cho bạn:</h3>
-          <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm chuyên sâu - 21 chỉ số"]}</div>
-          <div class="gd-results__divider">Hoặc</div>
-          <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm nâng cao - 16 chỉ số"]}</div>
+          ${suggestedTestsHtml}
         </div>
         <div class="gd-results__section gd-text-center">
           <p class="gd-results__text">Chuyên gia của chúng tôi sẵn sàng lắng nghe và trao đổi trực tiếp với bạn.</p>
@@ -303,9 +301,10 @@ class GDResultsGenerator {
     }
 
     const allRisks = this.extractRisksFromSymptoms(checkedSymptoms);
-    const displayedRisks = this.formatRisksForDisplay(allRisks);
+    const displayedRisks = Array.from(allRisks).join(', ');
     const pathogenInfoHtml = this.generatePathogenInfo(allRisks);
     const suggestedTestsHtml = this.generateSuggestedTests(allRisks, checkedSymptoms);
+    console.log("info", pathogenInfoHtml, "displayedRisks", displayedRisks, "allRisk", allRisks, "checkedSymptoms", checkedSymptoms);
 
     return `
       <h2 class="gd-results__title">Kết quả đánh giá</h2>
@@ -343,7 +342,7 @@ class GDResultsGenerator {
 
   static generateSpecialSymptomsResult() {
     const impliedRisks = new Set(['Lậu', 'Chlamydia', 'Giang mai', 'HIV']);
-    const pathogenInfoHtml = this.generatePathogenInfo(impliedRisks, ["Lậu, Chlamydia", "Giang mai", "HIV"]);
+    const pathogenInfoHtml = this.generatePathogenInfo(impliedRisks);
 
     return `
       <h2 class="gd-results__title">Kết quả đánh giá</h2>
@@ -422,11 +421,11 @@ class GDResultsGenerator {
     return displayedRisks.join(', ');
   }
 
-  static generatePathogenInfo(allRisks, order = null) {
+  static generatePathogenInfo(allRisks) {
     let pathogenInfoHtml = '';
     const describedPathogens = new Set();
 
-    const pathogenOrder = order || ["Sùi mào gà", "Lậu, Chlamydia", "Giang mai", "HIV", "HSV", "Viêm gan B", "Viêm gan C"];
+    const pathogenOrder = ["Sùi mào gà", "Lậu, Chlamydia", "Giang mai", "HIV", "HSV", "Viêm gan B", "Viêm gan C"];
 
     for (const pathogen of pathogenOrder) {
       if (pathogen === "Lậu, Chlamydia") {
@@ -448,23 +447,26 @@ class GDResultsGenerator {
     const isOnlySuiMaoGa = specificSymptomsChecked.length === 1 && specificSymptomsChecked[0].getAttribute('data-id') === 's6';
     
     if (isOnlySuiMaoGa) {
-      return `
-        <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số"]}</div>
-        <div class="gd-results__divider">Hoặc</div>
-        <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm cơ bản- 5 chỉ số"]}</div>
-      `;
+      return this.generateTestSuggestion([[GD_TEST_CODE.HPV, GD_TEST_CODE.ADVANCE].join(" và "), [GD_TEST_CODE.HPV, GD_TEST_CODE.BASIC].join(" và ")]);
+      // return `
+      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số"]}</div>
+      //   <div class="gd-results__divider">Hoặc</div>
+      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm cơ bản- 5 chỉ số"]}</div>
+      // `;
     } else if (allRisks.has("Sùi mào gà")) {
-      return `
-        <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm chuyên sâu- 21 chỉ số"]}</div>
-        <div class="gd-results__divider">Hoặc</div>
-        <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số"]}</div>
-      `;
+      return this.generateTestSuggestion([[GD_TEST_CODE.HPV, GD_TEST_CODE.SPECIAL].join(" và "), [GD_TEST_CODE.HPV, GD_TEST_CODE.ADVANCE].join(" và ")]);
+      // return `
+      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm chuyên sâu- 21 chỉ số"]}</div>
+      //   <div class="gd-results__divider">Hoặc</div>
+      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số"]}</div>
+      // `;
     } else {
-      return `
-        <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm chuyên sâu - 21 chỉ số"]}</div>
-        <div class="gd-results__divider">Hoặc</div>
-        <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm nâng cao - 16 chỉ số"]}</div>
-      `;
+      return this.generateTestSuggestion([GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]);
+      // return `
+      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm chuyên sâu - 21 chỉ số"]}</div>
+      //   <div class="gd-results__divider">Hoặc</div>
+      //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm nâng cao - 16 chỉ số"]}</div>
+      // `;
     }
   }
 
