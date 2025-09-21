@@ -3,115 +3,10 @@
  * Modular JavaScript application with consistent naming conventions
  */
 
+import { GD_CONFIG, GD_SYMPTOMS_DATA } from "./constants.js";
 // ==========================================================================
 // Configuration and Data
 // ==========================================================================
-
-const GD_CONFIG = {
-  // Animation durations
-  ANIMATION_DURATION: 300,
-  
-  // Step IDs
-  STEPS: {
-    START: 'step-start',
-    GENITALIA: 'step-genitalia',
-    SEXUAL_HABIT: 'step-sexual-habit',
-    RISK_FACTORS: 'step-risk-factors',
-    SYMPTOM_CHECKLIST: 'step-symptom-checklist'
-  },
-  
-  // Result types
-  RESULT_TYPES: {
-    DIAGNOSED: 'diagnosed',
-    NO_SYMPTOMS_RISK_FOUND: 'no-symptoms-risk-found',
-    NO_RISK_RESULT: 'no-risk-result',
-    SYMPTOM_RESULT: 'symptom-result'
-  },
-  
-  // Flow types
-  FLOW_TYPES: {
-    HAS_SYMPTOMS: 'has-symptoms',
-    NO_SYMPTOMS: 'no-symptoms',
-    DIAGNOSED: 'diagnosed'
-  }
-};
-
-// Symptoms data with consistent structure
-const GD_SYMPTOMS_DATA = [
-  { 
-    id: "s1", 
-    text: "Ngứa vùng sinh dục (âm đạo, dương vật, hậu môn)", 
-    risk: "Lậu, Chlamydia", 
-    tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"] 
-  },
-  { 
-    id: "s2", 
-    text: "Dịch tiết bất thường từ dương vật hoặc âm đạo hoặc hậu môn", 
-    risk: "Lậu, Chlamydia", 
-    tests: ["Gói xét nghiệm nâng cao - 10 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"] 
-  },
-  { 
-    id: "s3", 
-    text: "Tiểu buốt, tiểu gắt hoặc cảm giác nóng rát khi đi tiểu", 
-    risk: "Lậu, Chlamydia", 
-    tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"] 
-  },
-  { 
-    id: "s4", 
-    text: "Đau hoặc chảy máu khi quan hệ tình dục", 
-    risk: "Lậu, Chlamydia", 
-    tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"] 
-  },
-  { 
-    id: "s5", 
-    text: "Xuất hiện vết loét hoặc mụn nước quanh cơ quan sinh dục, hậu môn, miệng, hoặc lưỡi.", 
-    risk: "Giang mai, HSV", 
-    tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"] 
-  },
-  { 
-    id: "s6", 
-    text: "Xuất hiện nốt sùi hoặc mụn cóc quanh cơ quan sinh dục, hậu môn, miệng, hoặc lưỡi.", 
-    risk: "Sùi mào gà", 
-    tests: ["Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số", "Xét nghiệm HPV + Gói xét nghiệm cơ bản- 5 chỉ số"] 
-  },
-  { 
-    id: "s7", 
-    text: "Sưng đau tinh hoàn, bìu", 
-    risk: "Lậu, Chlamydia", 
-    tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"]
-  },
-  { 
-    id: "s8", 
-    text: "Đau vùng bụng từ rốn trở xuống (đau bụng dưới)", 
-    risk: "Lậu, Chlamydia", 
-    tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"]
-  },
-  { 
-    id: "s9", 
-    text: "Đau rát họng, viêm họng hoặc ho kéo dài dai dẳng", 
-    risk: "Lậu, Chlamydia", 
-    tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"] 
-  },
-  { 
-    id: "s10", 
-    text: "Sốt nhẹ, mệt mỏi, đau nhức cơ thể", 
-    risk: "HSV, HIV, Viêm gan B, Viêm gan C, Giang mai", 
-    tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"] 
-  },
-  { 
-    id: "s11", 
-    text: "Phát ban lòng bàn tay hoặc bàn chân", 
-    risk: "Giang mai, HIV", 
-    tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"] 
-  },
-  { 
-    id: "s12", 
-    text: "Triệu chứng khác", 
-    risk: "special", 
-    tests: ["Gói xét nghiệm chuyên sâu - 20 chỉ số"] 
-  }
-];
-
 // Test display names mapping
 const GD_TEST_DISPLAY_NAMES = { 
   "Gói xét nghiệm nâng cao - 16 chỉ số": "Gói xét nghiệm nâng cao - 16 chỉ số",
@@ -333,6 +228,16 @@ class GDResultsGenerator {
     `;
   }
 
+  static generateTestSuggestion(test_list) {
+    return test_list
+        .map(test => `<div class="gd-results__test-link">${test}</div>`)
+        .join('<div class="gd-results__divider">Hoặc</div>');
+  }
+
+  static generateConsultButton() {
+    return `<button class="gd-btn gd-btn--primary gd-mt-4">Tư vấn ngay với chuyên gia</button>`;
+  }
+
   static generateNoSymptomsRiskFoundResult() {
     const impliedRisks = new Set(['Lậu', 'Chlamydia', 'Giang mai', 'HIV']);
     const pathogenInfoHtml = this.generatePathogenInfo(impliedRisks, ["Lậu, Chlamydia", "Giang mai", "HIV"]);
@@ -367,7 +272,7 @@ class GDResultsGenerator {
         </div>
         <div class="gd-results__section gd-text-center">
           <p class="gd-results__text">Chuyên gia của chúng tôi sẵn sàng lắng nghe và trao đổi trực tiếp với bạn.</p>
-          <button class="gd-btn gd-btn--primary gd-mt-4">Tư vấn ngay với chuyên gia</button>
+          ${this.generateConsultButton()}
         </div>
       </div>
     `;
@@ -382,7 +287,7 @@ class GDResultsGenerator {
           </p>
           <div class="gd-results__section gd-text-center">
             <p class="gd-results__text">Chuyên gia của chúng tôi sẵn sàng lắng nghe và trao đổi trực tiếp với bạn.</p>
-            <button class="gd-btn gd-btn--primary gd-mt-4">Tư vấn ngay với chuyên gia</button>
+            ${this.generateConsultButton()}
           </div>
         </div>
       </div>
@@ -430,7 +335,7 @@ class GDResultsGenerator {
         </div>
         <div class="gd-results__section gd-text-center">
           <p class="gd-results__text">Chúng tôi luôn sẵn sàng lắng nghe và đồng hành cùng bạn xuyên suốt mọi giai đoạn - tư vấn, chẩn đoán, điều trị và sau điều trị.</p>
-          <button class="gd-btn gd-btn--primary gd-mt-4">Tư vấn ngay với chuyên gia</button>
+          ${this.generateConsultButton()}
         </div>
       </div>
     `;
@@ -470,7 +375,7 @@ class GDResultsGenerator {
         </div>
         <div class="gd-results__section gd-text-center">
           <p class="gd-results__text">Chúng tôi luôn sẵn sàng lắng nghe và đồng hành cùng bạn xuyên suốt mọi giai đoạn - tư vấn, chẩn đoán, điều trị và sau điều trị.</p>
-          <button class="gd-btn gd-btn--primary gd-mt-4">Tư vấn ngay với chuyên gia</button>
+          ${this.generateConsultButton()}
         </div>
       </div>
     `;
@@ -482,8 +387,8 @@ class GDResultsGenerator {
     checkedSymptoms.forEach(cb => {
       const symptomId = cb.getAttribute('data-id');
       const symptomInfo = GD_SYMPTOMS_DATA.find(s => s.id === symptomId);
-      if (symptomInfo && symptomInfo.risk !== 'special') {
-        symptomInfo.risk.split(', ').forEach(r => allRisks.add(r.trim()));
+      if (symptomInfo) {
+        symptomInfo.risk.forEach(risk => allRisks.add(risk));
       }
     });
 
