@@ -76,74 +76,74 @@ export const GD_CONFIG = {
     { 
       id: "s1", 
       text: "Ngứa vùng sinh dục (âm đạo, dương vật, hậu môn)", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA.name], 
+      risk: [DISEASE_CODE.LAU_CHLAMYDIA], 
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s2", 
       text: "Dịch tiết bất thường từ dương vật hoặc âm đạo hoặc hậu môn", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA.name], 
+      risk: [DISEASE_CODE.LAU_CHLAMYDIA], 
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE] 
     },
     { 
       id: "s3", 
       text: "Tiểu buốt, tiểu gắt hoặc cảm giác nóng rát khi đi tiểu", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA.name], 
+      risk: [DISEASE_CODE.LAU_CHLAMYDIA], 
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE] 
     },
     { 
       id: "s4", 
       text: "Đau hoặc chảy máu khi quan hệ tình dục", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA.name], 
+      risk: [DISEASE_CODE.LAU_CHLAMYDIA], 
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s5", 
       text: "Xuất hiện vết loét hoặc mụn nước quanh cơ quan sinh dục, hậu môn, miệng, hoặc lưỡi.", 
       // risk: "Giang mai, HSV",
-      risk: [DISEASE_CODE.GIANGMAI.name, DISEASE_CODE.HSV.name], 
+      risk: [DISEASE_CODE.GIANGMAI, DISEASE_CODE.HSV], 
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s6", 
       text: "Xuất hiện nốt sùi hoặc mụn cóc quanh cơ quan sinh dục, hậu môn, miệng, hoặc lưỡi.", 
       // risk: "Sùi mào gà", 
-      risk: [DISEASE_CODE.SUIMAOGA.name],
+      risk: [DISEASE_CODE.SUIMAOGA],
       tests: [[GD_TEST_CODE.HPV, GD_TEST_CODE.ADVANCE], [GD_TEST_CODE.HPV, GD_TEST_CODE.BASIC]]
     },
     { 
       id: "s7", 
       text: "Sưng đau tinh hoàn, bìu", 
       // risk: "Lậu, Chlamydia", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA.name],
+      risk: [DISEASE_CODE.LAU_CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s8", 
       text: "Đau vùng bụng từ rốn trở xuống (đau bụng dưới)", 
       // risk: "Lậu, Chlamydia", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA.name],
+      risk: [DISEASE_CODE.LAU_CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s9", 
       text: "Đau rát họng, viêm họng hoặc ho kéo dài dai dẳng", 
       // risk: "Lậu, Chlamydia", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA.name],
+      risk: [DISEASE_CODE.LAU_CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s10", 
       text: "Sốt nhẹ, mệt mỏi, đau nhức cơ thể", 
       risk: "HSV, HIV, Viêm gan B, Viêm gan C, Giang mai", 
-      risk: [DISEASE_CODE.HSV.name, DISEASE_CODE.HIV.name, DISEASE_CODE.VIEM_GAN_B.name, DISEASE_CODE.VIEM_GAN_C.name, DISEASE_CODE.GIANGMAI.name],
+      risk: [DISEASE_CODE.HSV, DISEASE_CODE.HIV, DISEASE_CODE.VIEM_GAN_B, DISEASE_CODE.VIEM_GAN_C, DISEASE_CODE.GIANGMAI],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE] 
     },
     { 
       id: "s11", 
       text: "Phát ban lòng bàn tay hoặc bàn chân", 
       // risk: "Giang mai, HIV", 
-      risk: [DISEASE_CODE.GIANGMAI.name, DISEASE_CODE.HIV.name],
+      risk: [DISEASE_CODE.GIANGMAI, DISEASE_CODE.HIV],
       // tests: ["Gói xét nghiệm nâng cao - 16 chỉ số", "Gói xét nghiệm chuyên sâu - 21 chỉ số"] 
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },

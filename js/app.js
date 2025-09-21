@@ -301,7 +301,7 @@ class GDResultsGenerator {
     }
 
     const allRisks = this.extractRisksFromSymptoms(checkedSymptoms);
-    const displayedRisks = Array.from(allRisks).join(', ');
+    const displayedRisks = this.formatRisksForDisplay(allRisks);
     const pathogenInfoHtml = this.generatePathogenInfo(allRisks);
     const suggestedTestsHtml = this.generateSuggestedTests(allRisks, checkedSymptoms);
     console.log("info", pathogenInfoHtml, "displayedRisks", displayedRisks, "allRisk", allRisks, "checkedSymptoms", checkedSymptoms);
@@ -394,52 +394,16 @@ class GDResultsGenerator {
     return allRisks;
   }
 
-  static formatRisksForDisplay(allRisks) {
-    let displayedRisks = [];
-    let otherRisksSorted = [];
-
-    // Always include "Sùi mào gà" first if present
-    if (allRisks.has("Sùi mào gà")) {
-      displayedRisks.push("Sùi mào gà");
-      allRisks.delete("Sùi mào gà");
-    }
-    
-    // Handle Lậu and Chlamydia order
-    if (allRisks.has("Lậu")) {
-      otherRisksSorted.push("Lậu");
-      allRisks.delete("Lậu");
-    }
-    if (allRisks.has("Chlamydia")) {
-      otherRisksSorted.push("Chlamydia");
-      allRisks.delete("Chlamydia");
-    }
-    
-    // Add remaining risks alphabetically
-    otherRisksSorted = otherRisksSorted.concat(Array.from(allRisks).sort());
-    displayedRisks = displayedRisks.concat(otherRisksSorted);
-
-    return displayedRisks.join(', ');
-  }
-
   static generatePathogenInfo(allRisks) {
     let pathogenInfoHtml = '';
-    const describedPathogens = new Set();
-
-    const pathogenOrder = ["Sùi mào gà", "Lậu, Chlamydia", "Giang mai", "HIV", "HSV", "Viêm gan B", "Viêm gan C"];
-
-    for (const pathogen of pathogenOrder) {
-      if (pathogen === "Lậu, Chlamydia") {
-        if ((allRisks.has('Lậu') || allRisks.has('Chlamydia')) && !describedPathogens.has('Lậu, Chlamydia')) {
-          pathogenInfoHtml += GD_PATHOGEN_DESCRIPTIONS[pathogen];
-          describedPathogens.add('Lậu, Chlamydia');
-        }
-      } else if (allRisks.has(pathogen) && !describedPathogens.has(pathogen)) {
-        pathogenInfoHtml += GD_PATHOGEN_DESCRIPTIONS[pathogen];
-        describedPathogens.add(pathogen);
-      }
-    }
-
+    allRisks.forEach(risk => pathogenInfoHtml += risk.description);
     return pathogenInfoHtml;
+  }
+
+  static formatRisksForDisplay(allRisks) {
+    const displayedRisks = [];
+    allRisks.forEach(risk => displayedRisks.push(risk.name));
+    return displayedRisks.join(", ");
   }
 
   static generateSuggestedTests(allRisks, checkedSymptoms) {
