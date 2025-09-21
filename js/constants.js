@@ -32,7 +32,7 @@ export const GD_CONFIG = {
   };
   
   export const GD_TEST_CODE = {
-    HPV: "Xét nghiệm HPV",
+    HPV: "Gói xét nghiệm HPV",
     BASIC: "Gói xét nghiệm cơ bản - 5 chỉ số",
     ADVANCE: "Gói xét nghiệm nâng cao - 16 chỉ số",
     SPECIAL: "Gói xét nghiệm chuyên sâu - 21 chỉ số"
@@ -70,6 +70,10 @@ export const GD_CONFIG = {
     }
   
   }
+  
+  export const BASIC_TEST_PACKAGES = [GD_TEST_CODE.ADVANCE, GD_TEST_CODE.BASIC];
+  export const COMMON_TEST_PACKAGES = [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE];
+  export const HPV_TEST_PACKAGE = [GD_TEST_CODE.HPV];
   
   // Symptoms data with consistent structure
   export const GD_SYMPTOMS_DATA = [
@@ -109,7 +113,7 @@ export const GD_CONFIG = {
       text: "Xuất hiện nốt sùi hoặc mụn cóc quanh cơ quan sinh dục, hậu môn, miệng, hoặc lưỡi.", 
       // risk: "Sùi mào gà", 
       risk: [DISEASE_CODE.SUIMAOGA],
-      tests: [[GD_TEST_CODE.HPV, GD_TEST_CODE.ADVANCE], [GD_TEST_CODE.HPV, GD_TEST_CODE.BASIC]]
+      tests: [GD_TEST_CODE.HPV]
     },
     { 
       id: "s7", 

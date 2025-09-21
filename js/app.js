@@ -3,31 +3,8 @@
  * Modular JavaScript application with consistent naming conventions
  */
 
-import { GD_CONFIG, GD_SYMPTOMS_DATA, GD_TEST_CODE, DISEASE_CODE } from "./constants.js";
-// ==========================================================================
-// Configuration and Data
-// ==========================================================================
-// Test display names mapping
-const GD_TEST_DISPLAY_NAMES = { 
-  "Gói xét nghiệm nâng cao - 16 chỉ số": "Gói xét nghiệm nâng cao - 16 chỉ số",
-  "Gói xét nghiệm chuyên sâu - 21 chỉ số": "Gói xét nghiệm chuyên sâu - 21 chỉ số",
-  "Gói xét nghiệm cơ bản - 5 chỉ số": "Gói xét nghiệm cơ bản - 5 chỉ số", 
-  "Xét nghiệm HPV": "Xét nghiệm HPV", 
-  "Xét nghiệm HPV + Gói xét nghiệm cơ bản- 5 chỉ số": "Xét nghiệm HPV và Gói xét nghiệm cơ bản - 5 chỉ số",
-  "Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số": "Xét nghiệm HPV và Gói xét nghiệm nâng cao - 16 chỉ số",
-  "Xét nghiệm HPV + Gói xét nghiệm chuyên sâu- 21 chỉ số": "Xét nghiệm HPV và Gói xét nghiệm chuyên sâu - 21 chỉ số"
-};
+import { GD_CONFIG, GD_SYMPTOMS_DATA, GD_TEST_CODE, DISEASE_CODE, BASIC_TEST_PACKAGES, COMMON_TEST_PACKAGES, HPV_TEST_PACKAGE } from "./constants.js";
 
-// Pathogen detailed descriptions
-const GD_PATHOGEN_DESCRIPTIONS = {
-  "Lậu, Chlamydia": `<p><strong>Lậu và Chlamydia:</strong> Lậu do vi khuẩn <i>Neisseria gonorrhoeae</i> và Chlamydia do vi khuẩn <i>Chlamydia trachomatis</i> gây ra. Nếu không chẩn đoán và điều trị kịp thời, có thể dẫn đến vô sinh, thai ngoài tử cung, hẹp đường tiểu.</p>`,
-  "Giang mai": `<p><strong>Giang mai:</strong> Bệnh giang mai do xoắn khuẩn <i>Treponema pallidum</i> gây ra. Nếu không chẩn đoán và điều trị kịp thời, có thể gây ra tổn thương tim, não và hệ thần kinh, thậm chí gây tử vong. Ngoài ra, bệnh giang mai có thể lây truyền từ mẹ sang con.</p>`,
-  "HIV": `<p><strong>HIV:</strong> HIV là vi-rút gây Hội chứng suy giảm miễn dịch mắc phải (AIDS). Giai đoạn đầu thường chỉ có triệu chứng sốt nhẹ, đau nhức cơ thể như cúm nhưng sau đó tiềm ẩn lâu dài. Nếu không điều trị, HIV sẽ phá hủy hệ miễn dịch, dẫn đến các nhiễm trùng cơ hội, ung thư, và gây tử vong. Điều trị bằng thuốc kháng vi-rút có thể giúp bệnh nhân sống một cuộc đời khỏe mạnh và gần như bình thường.</p>`,
-  "Sùi mào gà": `<p><strong>Sùi mào gà:</strong> HPV (Human Papillomavirus) là vi-rút lây truyền qua đường tình dục phổ biến, có thể gây sùi mào gà ở cơ quan sinh dục, hậu môn, miệng và lưỡi. Nếu không điều trị, một số chủng HPV có thể gây ung thư cổ tử cung, dương vật, hậu môn và hầu họng. Hiện nay chúng ta đã có vắc-xin phòng ngừa HPV, vì thế tầm soát và tiêm vaccine sớm là biện pháp phòng ngừa hiệu quả.</p>`, 
-  "HSV": `<p><strong>HSV:</strong> HSV (Herpes Simplex Virus) là một loại vi-rút phổ biến gây mụn rộp quanh miệng (vi-rút HSV-1 ) và vùng sinh dục ( vi-rút HSV-2). Vi-rút HSV tồn tại suốt đời trong cơ thể và dễ tái phát. Nếu không điều trị, có thể gây ra viêm giác mạc mắt (gây mù) và viêm não. Đặc biệt, trẻ sơ sinh bị nhiễm HSV có nguy cơ tử vong cao.</p>`,
-  "Viêm gan B": `<p><strong>Viêm gan B:</strong> HBV (Hepatitis B Virus) là vi-rút gây bệnh viêm gan B. Bệnh thường diễn biến âm thầm, không có triệu chứng rõ ràng. Nếu không điều trị, có thể dẫn đến xơ gan và ung thư gan, thậm chí đe dọa nghiêm trọng đến tính mạng. Hiện nay chúng ta đã có vắc-xin phòng ngừa viêm gan B, vì thế tầm soát và tiêm vaccine sớm là biện pháp phòng ngừa hiệu quả.</p>`,
-  "Viêm gan C": `<p><strong>Viêm gan C:</strong> HCV (Hepatitis C Virus) là vi-rút gây bệnh viêm gan C. Bệnh diến biến âm thầm và thường được chẩn đoán muộn. Nếu không điều trị, có thể dẫn đến xơ gan, suy gan và ung thư gan. Dù chưa có vắc-xin phòng ngừa, tuy nhiên bệnh có thể được trị khỏi hoàn toàn.</p>`
-};
 
 // ==========================================================================
 // Application State Management
@@ -238,32 +215,39 @@ class GDResultsGenerator {
     return `<button class="gd-btn gd-btn--primary gd-mt-4">Tư vấn ngay với chuyên gia</button>`;
   }
 
+  static generatepathogenInfo(pathogenInfoHtml) {
+    return `
+      <div class="gd-dropdown" id="medical-info-dropdown">
+        <div class="gd-dropdown__header">
+          <h3 class="gd-dropdown__title">Thông tin y khoa cho bạn</h3>
+          <svg class="gd-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6,9 12,15 18,9"></polyline>
+          </svg>
+        </div>
+        <div class="gd-dropdown__content">
+          <div class="gd-dropdown__body">
+            ${pathogenInfoHtml}
+          </div>
+        </div>
+      </div>
+    `
+  }
+
   static generateNoSymptomsRiskFoundResult() {
-    const impliedRisks = new Set(['Lậu', 'Chlamydia', 'Giang mai', 'HIV']);
-    const pathogenInfoHtml = this.generatePathogenInfo(impliedRisks);
-    const suggestedTestsHtml = this.generateTestSuggestion([GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]);
+    const allAvailableRisks = [];
+    Object.values(DISEASE_CODE).forEach(risk => allAvailableRisks.push(risk.name));
+    const displayedRisks = allAvailableRisks.length > 3 ? allAvailableRisks.slice(0, 3) : allAvailableRisks;
+    const pathogenInfoHtml = this.generatePathogenInfo(displayedRisks);
+    const suggestedTestsHtml = this.generateTestSuggestion(COMMON_TEST_PACKAGES);
 
     return `
       <h2 class="gd-results__title">Kết quả đánh giá</h2>
       <div class="gd-results__content">
         <div class="gd-results__text">
-          Dựa trên thông tin bạn cung cấp, bạn có nguy cơ cao mắc các bệnh xã hội như là <span class="gd-results__highlight">Lậu</span>, <span class="gd-results__highlight">Chlamydia</span>, <span class="gd-results__highlight">Giang mai</span>, <span class="gd-results__highlight">HIV</span>...
+          Dựa trên thông tin bạn cung cấp, bạn có nguy cơ cao mắc các bệnh xã hội như là mắc <span class="gd-results__highlight">${displayedRisks.join(", ")}...</span>
         </div>
         <div class="gd-results__text">
           Tầm soát bệnh xã hội ngay khi có nguy cơ để bảo vệ sức khỏe của bạn. Nếu không được phát hiện và điều trị kịp thời, bệnh có thể dẫn đến tổn thương cơ quan sinh dục, gây vô sinh, và lây lan âm thầm trong cộng đồng.
-        </div>
-        <div class="gd-dropdown" id="medical-info-dropdown">
-          <div class="gd-dropdown__header">
-            <h3 class="gd-dropdown__title">Thông tin y khoa cho bạn</h3>
-            <svg class="gd-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6,9 12,15 18,9"></polyline>
-            </svg>
-          </div>
-          <div class="gd-dropdown__content">
-            <div class="gd-dropdown__body">
-              ${pathogenInfoHtml}
-            </div>
-          </div>
         </div>
         <div class="gd-results__section">
           ${suggestedTestsHtml}
@@ -297,14 +281,13 @@ class GDResultsGenerator {
     
     // Handle "Triệu chứng khác" only case
     if (checkedSymptoms.length === 1 && checkedSymptoms[0].getAttribute('data-id') === 's12') {
-      return this.generateSpecialSymptomsResult();
+      return this.generateNoSymptomsRiskFoundResult();
     }
 
     const allRisks = this.extractRisksFromSymptoms(checkedSymptoms);
     const displayedRisks = this.formatRisksForDisplay(allRisks);
     const pathogenInfoHtml = this.generatePathogenInfo(allRisks);
-    const suggestedTestsHtml = this.generateSuggestedTests(allRisks, checkedSymptoms);
-    console.log("info", pathogenInfoHtml, "displayedRisks", displayedRisks, "allRisk", allRisks, "checkedSymptoms", checkedSymptoms);
+    const suggestedTestsHtml = this.generateSuggestedTests(checkedSymptoms);
 
     return `
       <h2 class="gd-results__title">Kết quả đánh giá</h2>
@@ -315,62 +298,10 @@ class GDResultsGenerator {
         <div class="gd-results__text">
           Bạn cần xét nghiệm ngay để được chẩn đoán và điều trị sớm.
         </div>
-        <div class="gd-dropdown" id="medical-info-dropdown">
-          <div class="gd-dropdown__header">
-            <h3 class="gd-dropdown__title">Thông tin y khoa cho bạn</h3>
-            <svg class="gd-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6,9 12,15 18,9"></polyline>
-            </svg>
-          </div>
-          <div class="gd-dropdown__content">
-            <div class="gd-dropdown__body">
-              ${pathogenInfoHtml}
-            </div>
-          </div>
-        </div>
+        ${generatepathogenInfo(pathogenInfoHtml)}
         <div class="gd-results__section">
           <h3 class="gd-results__section-title">Xét nghiệm gợi ý cho bạn:</h3>
           ${suggestedTestsHtml}
-        </div>
-        <div class="gd-results__section gd-text-center">
-          <p class="gd-results__text">Chúng tôi luôn sẵn sàng lắng nghe và đồng hành cùng bạn xuyên suốt mọi giai đoạn - tư vấn, chẩn đoán, điều trị và sau điều trị.</p>
-          ${this.generateConsultButton()}
-        </div>
-      </div>
-    `;
-  }
-
-  static generateSpecialSymptomsResult() {
-    const impliedRisks = new Set(['Lậu', 'Chlamydia', 'Giang mai', 'HIV']);
-    const pathogenInfoHtml = this.generatePathogenInfo(impliedRisks);
-
-    return `
-      <h2 class="gd-results__title">Kết quả đánh giá</h2>
-      <div class="gd-results__content">
-        <div class="gd-results__text">
-          Dựa trên thông tin bạn cung cấp, bạn có nguy cơ cao mắc các bệnh xã hội như là <span class="gd-results__highlight">Lậu</span>, <span class="gd-results__highlight">Chlamydia</span>, <span class="gd-results__highlight">Giang mai</span>, <span class="gd-results__highlight">HIV</span>...
-        </div>
-        <div class="gd-results__text">
-          Tầm soát bệnh xã hội ngay khi có nguy cơ để bảo vệ sức khỏe của bạn. Nếu không được phát hiện và điều trị kịp thời, bệnh có thể dẫn đến tổn thương cơ quan sinh dục, gây vô sinh, và lây lan âm thầm trong cộng đồng.
-        </div>
-        <div class="gd-dropdown" id="medical-info-dropdown">
-          <div class="gd-dropdown__header">
-            <h3 class="gd-dropdown__title">Thông tin y khoa cho bạn</h3>
-            <svg class="gd-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6,9 12,15 18,9"></polyline>
-            </svg>
-          </div>
-          <div class="gd-dropdown__content">
-            <div class="gd-dropdown__body">
-              ${pathogenInfoHtml}
-            </div>
-          </div>
-        </div>
-        <div class="gd-results__section">
-          <h3 class="gd-results__section-title">Xét nghiệm gợi ý cho bạn:</h3>
-          <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm chuyên sâu - 21 chỉ số"]}</div>
-          <div class="gd-results__divider">Hoặc</div>
-          <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm nâng cao - 16 chỉ số"]}</div>
         </div>
         <div class="gd-results__section gd-text-center">
           <p class="gd-results__text">Chúng tôi luôn sẵn sàng lắng nghe và đồng hành cùng bạn xuyên suốt mọi giai đoạn - tư vấn, chẩn đoán, điều trị và sau điều trị.</p>
@@ -406,32 +337,53 @@ class GDResultsGenerator {
     return displayedRisks.join(", ");
   }
 
-  static generateSuggestedTests(allRisks, checkedSymptoms) {
-    const specificSymptomsChecked = Array.from(checkedSymptoms).filter(cb => cb.getAttribute('data-id') !== 's12');
-    const isOnlySuiMaoGa = specificSymptomsChecked.length === 1 && specificSymptomsChecked[0].getAttribute('data-id') === 's6';
+  static generateSuggestedTests(checkedSymptoms, noSymptom = false) {
+    console.log("suggest test");
+    console.log(checkedSymptoms)
+
+    // const allRisks = new Set();
     
+    // checkedSymptoms.forEach(cb => {
+    //   const symptomId = cb.getAttribute('data-id');
+    //   const symptomInfo = GD_SYMPTOMS_DATA.find(s => s.id === symptomId);
+    //   if (symptomInfo) {
+    //     symptomInfo.risk.forEach(risk => allRisks.add(risk));
+    //   }
+    // });
+
+    // return allRisks;
+    const SUIMAOGA_ID = 's6';
+    const specificSymptomsChecked = Array.from(checkedSymptoms).filter(cb => cb.getAttribute('data-id') !== 's12');
+    const isOnlySuiMaoGa = specificSymptomsChecked.length === 1 && specificSymptomsChecked[0].getAttribute('data-id') === SUIMAOGA_ID;
+    
+    const testLists = [];
+    if (noSymptom) {
+      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(testPackage));
+    }
     if (isOnlySuiMaoGa) {
-      return this.generateTestSuggestion([[GD_TEST_CODE.HPV, GD_TEST_CODE.ADVANCE].join(" và "), [GD_TEST_CODE.HPV, GD_TEST_CODE.BASIC].join(" và ")]);
-      // return `
+      BASIC_TEST_PACKAGES.map(testPackage => [HPV_TEST_PACKAGE, testPackage].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));      // return `
       //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số"]}</div>
       //   <div class="gd-results__divider">Hoặc</div>
       //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm cơ bản- 5 chỉ số"]}</div>
       // `;
-    } else if (allRisks.has("Sùi mào gà")) {
-      return this.generateTestSuggestion([[GD_TEST_CODE.HPV, GD_TEST_CODE.SPECIAL].join(" và "), [GD_TEST_CODE.HPV, GD_TEST_CODE.ADVANCE].join(" và ")]);
+    } else if (Array.from(checkedSymptoms).some(cb => cb.getAttribute('data-id') === SUIMAOGA_ID)) {
+      COMMON_TEST_PACKAGES.map(testPackage => [HPV_TEST_PACKAGE, testPackage].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
+
       // return `
       //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm chuyên sâu- 21 chỉ số"]}</div>
       //   <div class="gd-results__divider">Hoặc</div>
       //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Xét nghiệm HPV + Gói xét nghiệm nâng cao -16 chỉ số"]}</div>
       // `;
     } else {
-      return this.generateTestSuggestion([GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]);
+      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(testPackage));
       // return `
       //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm chuyên sâu - 21 chỉ số"]}</div>
       //   <div class="gd-results__divider">Hoặc</div>
       //   <div class="gd-results__test-link">${GD_TEST_DISPLAY_NAMES["Gói xét nghiệm nâng cao - 16 chỉ số"]}</div>
       // `;
     }
+    return this.generateTestSuggestion(testLists);
+
   }
 
   static addBackToStartButton() {
