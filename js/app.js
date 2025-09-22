@@ -223,6 +223,10 @@ class GDResultsGenerator {
     return `<button class="gd-btn gd-btn--primary gd-mt-4">Tư vấn ngay với chuyên gia</button>`;
   }
 
+  static generateTestLink(testPackage) {
+    return `<a href="#" hover:no-underline" class="gd-result__test_link">${testPackage}</a>`
+  }
+
   static generatepathogenInfo(pathogenInfoHtml) {
     return `
       <div class="gd-dropdown" id="medical-info-dropdown">
@@ -245,8 +249,7 @@ class GDResultsGenerator {
     const allAvailableRisks = [];
     Object.values(DISEASE_CODE).forEach(risk => allAvailableRisks.push(risk.name));
     const displayedRisks = allAvailableRisks.length > 3 ? allAvailableRisks.slice(0, 3) : allAvailableRisks;
-    const pathogenInfoHtml = this.generatePathogenInfo(displayedRisks);
-    const suggestedTestsHtml = this.generateTestSuggestion(COMMON_TEST_PACKAGES);
+    const suggestedTestsHtml = this.generateTestSuggestion(COMMON_TEST_PACKAGES.map(testPackage => generateTestLink(testPackage)));
 
     return `
       <h2 class="gd-results__title">Kết quả đánh giá</h2>
@@ -348,15 +351,15 @@ class GDResultsGenerator {
     
     const testLists = [];
     if (noSymptom) {
-      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(testPackage));
+      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(generateTestLink(testPackage)));
     }
     if (isOnlySuiMaoGa) {
-      BASIC_TEST_PACKAGES.map(testPackage => [HPV_TEST_PACKAGE, testPackage].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));      // return `
+      BASIC_TEST_PACKAGES.map(testPackage => [generateTestLink(HPV_TEST_PACKAGE), generateTestLink(testPackage)].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
     } else if (Array.from(checkedSymptoms).some(cb => cb.getAttribute('data-id') === SUIMAOGA_ID)) {
-      COMMON_TEST_PACKAGES.map(testPackage => [HPV_TEST_PACKAGE, testPackage].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
+      COMMON_TEST_PACKAGES.map(testPackage => [generateTestLink(HPV_TEST_PACKAGE), generateTestLink(testPackage)].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
 
     } else {
-      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(testPackage));
+      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(generateTestLink(testPackage)));
     }
     return this.generateTestSuggestion(testLists);
 

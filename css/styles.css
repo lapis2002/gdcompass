@@ -471,13 +471,16 @@ body {
   margin: 0 0 var(--gd-spacing-sm) 0;
 }
 
+.gd-result__test_link {
+  color: var(--gd-color-primary);
+  text-decoration: underline;
+}
 .gd-results__test-link {
   display: block;
   width: 100%;
   text-align: center;
-  color: var(--gd-color-primary);
+  color: var(--gd-text-primary);
   font-weight: 600;
-  text-decoration: underline;
   margin: var(--gd-spacing-sm) 0;
   padding: var(--gd-spacing-sm);
   border-radius: var(--gd-radius-md);
