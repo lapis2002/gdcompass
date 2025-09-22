@@ -249,7 +249,7 @@ class GDResultsGenerator {
     const allAvailableRisks = [];
     Object.values(DISEASE_CODE).forEach(risk => allAvailableRisks.push(risk.name));
     const displayedRisks = allAvailableRisks.length > 3 ? allAvailableRisks.slice(0, 3) : allAvailableRisks;
-    const suggestedTestsHtml = this.generateTestSuggestion(COMMON_TEST_PACKAGES.map(testPackage => generateTestLink(testPackage)));
+    const suggestedTestsHtml = this.generateTestSuggestion(COMMON_TEST_PACKAGES.map(testPackage => this.generateTestLink(testPackage)));
 
     return `
       <h2 class="gd-results__title">Kết quả đánh giá</h2>
@@ -351,15 +351,15 @@ class GDResultsGenerator {
     
     const testLists = [];
     if (noSymptom) {
-      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(generateTestLink(testPackage)));
+      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(this.generateTestLink(testPackage)));
     }
     if (isOnlySuiMaoGa) {
-      BASIC_TEST_PACKAGES.map(testPackage => [generateTestLink(HPV_TEST_PACKAGE), generateTestLink(testPackage)].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
+      BASIC_TEST_PACKAGES.map(testPackage => [this.generateTestLink(HPV_TEST_PACKAGE), this.generateTestLink(testPackage)].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
     } else if (Array.from(checkedSymptoms).some(cb => cb.getAttribute('data-id') === SUIMAOGA_ID)) {
-      COMMON_TEST_PACKAGES.map(testPackage => [generateTestLink(HPV_TEST_PACKAGE), generateTestLink(testPackage)].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
+      COMMON_TEST_PACKAGES.map(testPackage => [this.generateTestLink(HPV_TEST_PACKAGE), this.generateTestLink(testPackage)].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
 
     } else {
-      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(generateTestLink(testPackage)));
+      COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(this.generateTestLink(testPackage)));
     }
     return this.generateTestSuggestion(testLists);
 
