@@ -196,6 +196,11 @@ class GDResultsGenerator {
     domManager.elements.resultsContainer.innerHTML = content;
     this.addBackToStartButton();
     this.setupDropdownToggle();
+
+    // Smooth scroll to results
+    setTimeout(() => {
+      domManager.elements.resultsContainer?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
   }
 
   static generateDiagnosedResult() {
@@ -218,7 +223,7 @@ class GDResultsGenerator {
 
   static generateTestSuggestionSection(suggestedTestsHtml) {
     return `
-       <div class="gd-results__section">
+       <div class="gd-results__section gd-mb-4">
         <h3 class="gd-results__section-title">Xét nghiệm gợi ý cho bạn:</h3>
         ${suggestedTestsHtml}
       </div>
@@ -232,7 +237,7 @@ class GDResultsGenerator {
     return `<a href="#" hover:no-underline" class="gd-result__test_link">${testPackage}</a>`
   }
 
-  static generatepathogenInfo(pathogenInfoHtml) {
+  static generatepathogenInfoHtml(pathogenInfoHtml) {
     return `
       <div class="gd-dropdown" id="medical-info-dropdown">
         <div class="gd-dropdown__header">
@@ -312,8 +317,9 @@ class GDResultsGenerator {
         <div class="gd-results__text">
           Bạn cần xét nghiệm ngay để được chẩn đoán và điều trị sớm.
         </div>
-        ${this.generatepathogenInfo(pathogenInfoHtml)}
         ${this.generateTestSuggestionSection(suggestedTestsHtml)}
+
+        ${this.generatepathogenInfoHtml(pathogenInfoHtml)}
 
         <div class="gd-results__section gd-text-center">
           <p class="gd-results__text">Chúng tôi luôn sẵn sàng lắng nghe và đồng hành cùng bạn xuyên suốt mọi giai đoạn - tư vấn, chẩn đoán, điều trị và sau điều trị.</p>
