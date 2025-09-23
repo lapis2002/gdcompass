@@ -108,7 +108,7 @@ body {
 
 /* Container */
 .gd-container {
-  max-width: 42rem; /* 672px */
+  max-width: 56rem; /* 896px */
   margin: 0 auto;
   padding: var(--gd-spacing-md);
 }

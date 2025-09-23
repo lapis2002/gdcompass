@@ -73,6 +73,11 @@ class GDDOMManager {
 
     this.updateNavigationButtons();
     this.updateHeader(stepId);
+
+    // Smooth scroll to the active step after layout updates
+    setTimeout(() => {
+      targetStep?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
   }
 
   updateNavigationButtons() {
@@ -453,6 +458,11 @@ class GDStepNavigator {
         } else {
           GDStepNavigator.generateSymptomsList();
           domManager.showStep(GD_CONFIG.STEPS.SYMPTOM_CHECKLIST);
+          // Scroll to question + choices
+          setTimeout(() => {
+            document.getElementById(GD_CONFIG.STEPS.SYMPTOM_CHECKLIST)
+              ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 0);
         }
         break;
         
