@@ -93,7 +93,7 @@ class GDDOMManager {
 
   getOriginalDisclaimerText() {
     return `
-      <span class="gd-soft-highlight">GDCompass™</span> được phát triển bởi GD Health, dựa trên hướng dẫn của Trung tâm Kiểm soát và Phòng ngừa Dịch bệnh Hoa Kỳ (CDC) và Tổ chức Y tế Thế giới (WHO). Ứng dụng này đã được đăng ký bản quyền tác giả tại Cục Bản Quyền Tác Giả. Kết qủa từ <span class="gd-soft-highlight">GDCompass™</span> không thay thế cho việc tư vấn, chẩn đoán, và điều trị của bác sĩ. Tuy nhiên, bạn có thể sử dụng kết quả từ <span class="gd-soft-highlight">GDCompass™</span> để trao đổi với chuyên gia y tế của chúng tôi và quyết định giải pháp phù hơp nhất cho bạn. <span class="gd-soft-highlight">GDCompass™</span> không hỏi thông tin định danh, vì thế bạn có thể hoàn toàn yên tâm. Sự bảo mật thông tin của bạn là ưu tiên hàng đầu của GDHealth!`;
+      <span class="gd-soft-highlight">GDCompass™</span> được phát triển bởi GD Health, dựa trên hướng dẫn của Trung tâm Kiểm soát và Phòng ngừa Dịch bệnh Hoa Kỳ (CDC) và Tổ chức Y tế Thế giới (WHO). Ứng dụng này đã được đăng ký bản quyền tác giả tại Cục Bản Quyền Tác Giả. </br> Kết qủa từ <span class="gd-soft-highlight">GDCompass™</span> không thay thế cho việc tư vấn, chẩn đoán, và điều trị của bác sĩ. Tuy nhiên, bạn có thể sử dụng kết quả từ <span class="gd-soft-highlight">GDCompass™</span> để trao đổi với chuyên gia y tế của chúng tôi và quyết định giải pháp phù hơp nhất cho bạn. </br><span class="gd-soft-highlight">GDCompass™</span> không hỏi thông tin định danh, vì thế bạn có thể hoàn toàn yên tâm. Sự bảo mật thông tin của bạn là ưu tiên hàng đầu của GDHealth!`;
   }
 
   showResults() {

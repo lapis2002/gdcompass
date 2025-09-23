@@ -154,7 +154,7 @@ body {
 
 @media (min-width: 640px) {
   .gd-header__description {
-    font-size: var(--gd-font-size-lg);
+    font-size: var(--gd-font-size-base);
   }
 }
 
