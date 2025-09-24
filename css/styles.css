@@ -389,6 +389,11 @@ body {
   margin-top: var(--gd-spacing-xl);
 }
 
+/* Center the navigation (used for pre-step with only one button) */
+.gd-navigation--center {
+  justify-content: center;
+}
+
 @media (max-width: 480px) {
   .gd-navigation {
     flex-direction: column;
@@ -397,6 +402,38 @@ body {
   
   .gd-navigation .gd-btn {
     width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Disclaimer Components
+   ========================================================================== */
+
+.gd-disclaimer {
+  text-align: center;
+  padding: var(--gd-spacing-lg) 0;
+}
+
+.gd-disclaimer__content {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.gd-disclaimer__text {
+  font-size: var(--gd-font-size-base);
+  color: var(--gd-text-primary);
+  line-height: 1.6;
+  margin: 0 0 var(--gd-spacing-md) 0;
+  text-align: left;
+}
+
+.gd-disclaimer__text:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .gd-disclaimer__text {
+    font-size: var(--gd-font-size-lg);
   }
 }
 

@@ -8,6 +8,7 @@ export const GD_CONFIG = {
     
     // Step IDs
     STEPS: {
+      DISCLAIMER: 'step-disclaimer',
       START: 'step-start',
       GENITALIA: 'step-genitalia',
       SEXUAL_HABIT: 'step-sexual-habit',

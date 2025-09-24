@@ -19,9 +19,27 @@
 
         <main class="gd-main" id="quiz-main">
             <div class="gd-quiz" id="quiz-container">
+                <!-- Step 0: Disclaimer -->
+                <div class="gd-step gd-step--active" id="step-disclaimer">
+                    <div class="gd-disclaimer">
+                        <div class="gd-disclaimer__content">
+                            <p class="gd-disclaimer__text">
+                                <span class="gd-results__highlight">GDCompass™</span> được phát triển bởi GD Health, dựa trên hướng dẫn của Trung tâm Kiểm soát và Phòng ngừa Dịch bệnh Hoa Kỳ (CDC) và Tổ chức Y tế Thế giới (WHO). Ứng dụng này đã được đăng ký bản quyền tác giả tại Cục Bản Quyền Tác Giả.
+                            </p>
+                            <p class="gd-disclaimer__text">
+                                Kết qủa từ <span class="gd-results__highlight">GDCompass™</span> không thay thế cho việc tư vấn, chẩn đoán, và điều trị của bác sĩ. Tuy nhiên, bạn có thể sử dụng kết quả từ <span class="gd-results__highlight">GDCompass™</span> để trao đổi với chuyên gia y tế của chúng tôi và quyết định giải pháp phù hơp nhất cho bạn.
+                            </p>
+                            <p class="gd-disclaimer__text">
+                                <span class="gd-results__highlight">GDCompass™</span> không hỏi thông tin định danh, vì thế bạn có thể hoàn toàn yên tâm. Sự bảo mật thông tin của bạn là ưu tiên hàng đầu của GDHealth!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Step 1: Start -->
-                <div class="gd-step gd-step--active" id="step-start">
+                <div class="gd-step" id="step-start">
                     <h2 class="gd-step__title">Chúng tôi có thể giúp gì cho bạn?</h2>
+                    <p class="gd-step__description">Chỉ với 2 phút, <span class="gd-soft-highlight">GDCompass™</span> giúp bạn tìm hiểu nguy cơ mắc bệnh xã hội và các xét nghiệm có thể phù hợp với bạn.</p>
                     <div class="gd-error gd-error--hidden" id="error-step-start">Vui lòng chọn một lựa chọn.</div>
                     <div class="gd-options">
                         <label class="gd-option">

@@ -70,6 +70,8 @@ class GDDOMManager {
     if (targetStep) {
       targetStep.classList.add('gd-step--active');
     }
+    // Track current step for UI updates
+    appState.currentStep = stepId;
 
     this.updateNavigationButtons();
     this.updateHeader(stepId);
@@ -83,13 +85,18 @@ class GDDOMManager {
   updateNavigationButtons() {
     const hasHistory = appState.history.length > 0;
     this.elements.prevBtn.classList.toggle('gd-btn--hidden', !hasHistory);
+
+    // Center align and rename Next button on disclaimer step
+    const isDisclaimer = appState.currentStep === GD_CONFIG.STEPS.DISCLAIMER;
+    this.elements.nextBtn.textContent = isDisclaimer ? 'Bắt đầu' : 'Tiếp theo';
+    this.elements.navigation.classList.toggle('gd-navigation--center', isDisclaimer);
   }
 
   updateHeader(stepId) {
     // Always show the header when showing a step (not a result page)
     this.elements.mainHeader.style.display = 'block';
     
-    if (stepId === GD_CONFIG.STEPS.START) {
+    if (stepId === GD_CONFIG.STEPS.DISCLAIMER || stepId === GD_CONFIG.STEPS.START) {
       this.elements.headerDescription.innerHTML = 'Chỉ với 2 phút, <span class="gd-soft-highlight">GDCompass™</span> giúp bạn tìm hiểu nguy cơ mắc bệnh xã hội và các xét nghiệm có thể phù hợp với bạn.';
     } else {
       this.elements.headerDescription.innerHTML = this.getOriginalDisclaimerText();
@@ -386,7 +393,7 @@ class GDResultsGenerator {
       appState.reset();
       domManager.hideResults();
       domManager.resetForm();
-      domManager.showStep(GD_CONFIG.STEPS.START);
+      domManager.showStep(GD_CONFIG.STEPS.DISCLAIMER);
     });
     
     domManager.elements.resultsContainer.appendChild(backToStartBtn);
@@ -427,7 +434,9 @@ class GDResultsGenerator {
 class GDStepNavigator {
   static handleNext() {
     const activeStep = document.querySelector('.gd-step--active');
-    if (!activeStep || !GDValidator.validateStep(activeStep.id)) {
+    
+    // Skip validation for disclaimer step
+    if (activeStep.id !== GD_CONFIG.STEPS.DISCLAIMER && !GDValidator.validateStep(activeStep.id)) {
       return;
     }
     
@@ -436,6 +445,11 @@ class GDStepNavigator {
     const selectedFlow = document.querySelector('input[name="flow"]:checked')?.value;
     
     switch (activeStep.id) {
+      case GD_CONFIG.STEPS.DISCLAIMER:
+        // No validation needed for disclaimer, just move to next step
+        domManager.showStep(GD_CONFIG.STEPS.START);
+        break;
+        
       case GD_CONFIG.STEPS.START:
         appState.setAnswer('flow', selectedFlow);
         if (selectedFlow === GD_CONFIG.FLOW_TYPES.DIAGNOSED) {
@@ -574,7 +588,7 @@ function initializeApp() {
   GDCheckboxManager.setupSymptomsExclusiveLogic();
 
   // Initialize the first step
-  domManager.showStep(GD_CONFIG.STEPS.START);
+  domManager.showStep(GD_CONFIG.STEPS.DISCLAIMER);
 }
 
 // Initialize when DOM is loaded
