@@ -403,6 +403,11 @@ body {
   .gd-navigation .gd-btn {
     width: 100%;
   }
+
+  /* Make Next button appear above Prev button on mobile */
+  #next-btn {
+    order: -1;
+  }
 }
 
 /* ==========================================================================
