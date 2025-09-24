@@ -46,6 +46,23 @@
   --gd-gradient-soft: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%);
   /* UI spacing tokens */
   --gd-cta-arrow-space: 0.75rem;
+  /* Component spacing tokens (reduce magic numbers) */
+  --gd-cta-pad-y: 0.875rem;             /* single CTA vertical padding */
+  --gd-cta-pad-x-base: 1.125rem;        /* single CTA base left padding (before arrow space) */
+  --gd-cta-pad-right: 1rem;             /* single CTA right padding */
+  --gd-chip-pad-y: 0.625rem;            /* chip vertical padding */
+  --gd-chip-pad-x-base: 0.875rem;       /* chip base left padding (before arrow space) */
+  --gd-chip-pad-right: 0.75rem;         /* chip right padding */
+  --gd-row-pad-y: 0.5rem;               /* suggestion row vertical padding */
+  --gd-row-pad-x: 0.75rem;              /* suggestion row horizontal padding */
+  --gd-btn-success-right-pad-extra: 0.5rem; /* extra space on right side of success button */
+  --gd-btn-success-arrow-right-adjust: -0.5rem; /* arrow offset relative to spacing-lg */
+
+  /* Motion tokens */
+  --gd-raise-sm: 1px;   /* small lift */
+  --gd-raise-md: 2px;   /* medium lift */
+  --gd-raise-lg: 3px;   /* large lift */
+  --gd-arrow-slide-offset: 4px; /* how far arrows slide on hover */
   
   /* Spacing */
   --gd-spacing-xs: 0.25rem;
@@ -117,6 +134,7 @@ body {
   background-color: var(--gd-bg-secondary);
   margin: 0;
   padding: 0;
+  min-height: 100vh; /* ensure body spans at least the viewport height */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -806,6 +824,10 @@ body {
 /* Soften page background */
 body.gd-body {
   background: var(--gd-gradient-soft);
+  /* Make sure gradient covers full viewport height and scales nicely */
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Main card refinement */
@@ -856,6 +878,9 @@ body.gd-body {
   color: var(--gd-text-inverse);
   border: none;
   box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
+  position: relative;
+  /* Always reserve space for the arrow so it never overlaps the text */
+  padding-right: calc(var(--gd-spacing-lg)  + 0.5rem);
 }
 .gd-btn--success:hover {
   filter: brightness(1.02);
@@ -865,6 +890,22 @@ body.gd-body {
 .gd-btn--success:active {
   transform: translateY(0);
   box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
+}
+
+/* Right arrow appears on hover (Nhà thuốc CTA) */
+.gd-btn--success::after {
+  content: '→';
+  position: absolute;
+  right: calc(var(--gd-spacing-lg)  - 0.5rem);
+  top: 50%;
+  /* Start slightly to the left to match test suggestion arrow behavior */
+  transform: translateY(-50%) translateX(-4px);
+  opacity: 0;
+  transition: transform var(--gd-transition-normal), opacity var(--gd-transition-normal);
+}
+.gd-btn--success:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 /* Option cards - more tactile */
@@ -917,20 +958,27 @@ body.gd-body {
   color: #0f172a; /* slate-900 */
 }
 
-/* Test suggestions wrapper: no outer box, just vertical rhythm */
+/* Test suggestions wrapper: light outer box for visibility (esp. on mobile) */
 .gd-results__test-link {
   margin: var(--gd-spacing-sm) 0;
+  padding: var(--gd-row-pad-y) var(--gd-row-pad-x);
+  border: 1px solid rgba(13, 148, 136, 0.35);
+  border-radius: 10px;
+  background: #f0fdfa; /* soft teal as default so touch users see emphasis */
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.12);
+  transition: background-color var(--gd-transition-normal), box-shadow var(--gd-transition-normal), border-color var(--gd-transition-normal), transform var(--gd-transition-normal);
 }
-/* On hover of the entire suggestion row, amplify inner CTA feedback */
-.gd-results__test-link:hover .gd-result__test_link {
-  filter: brightness(1.03);
-  transform: translateY(-1px);
-}
-/* Ensure the outer row itself does not show a blue/teal background on hover */
+/* On hover of the entire suggestion row: light emphasis */
 .gd-results__test-link:hover {
-  background: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
+  background: #e6fffb; /* slightly brighter */
+  border-color: rgba(13, 148, 136, 0.5);
+  box-shadow: 0 6px 16px rgba(13, 148, 136, 0.16);
+  transform: translateY(calc(-1 * var(--gd-raise-md)));
+}
+/* Also gently amplify inner CTAs when the row is hovered */
+.gd-results__test-link:hover .gd-result__test_link,
+.gd-results__test-link:hover .gd-test-chip {
+  filter: brightness(1.03);
 }
 
 /* Single-package CTA */
@@ -941,13 +989,13 @@ body.gd-body {
   width: 100%;
   text-align: center;
   /* Slightly more space on the left for balance; keep right padding tighter */
-  padding-top: 0.875rem;
-  padding-bottom: 0.875rem;
-  padding-left: calc(1.125rem + var(--gd-cta-arrow-space));
-  padding-right: 1rem;
+  padding-top: var(--gd-cta-pad-y);
+  padding-bottom: var(--gd-cta-pad-y);
+  padding-left: calc(var(--gd-cta-pad-x-base) + var(--gd-cta-arrow-space));
+  padding-right: var(--gd-cta-pad-right);
   border-radius: 8px;
   background-image: var(--gd-gradient-primary-soft);
-  color: var(--gd-text-inverse);
+  color: var(--gd-text-secondary);
   text-decoration: none;
   font-weight: 600; /* less bold */
   letter-spacing: 0.005em;
@@ -961,7 +1009,7 @@ body.gd-body {
   content: '→';
   margin-left: 0.5rem;
   opacity: 0;
-  transform: translateX(-4px);
+  transform: translateX(calc(-1 * var(--gd-arrow-slide-offset)));
   transition: transform var(--gd-transition-normal), opacity var(--gd-transition-normal);
 }
 .gd-result__test_link:hover::after {
@@ -970,7 +1018,7 @@ body.gd-body {
 }
 .gd-result__test_link:hover {
   text-decoration: none;
-  transform: translateY(-1px);
+  transform: translateY(calc(-1 * var(--gd-raise-sm)));
   filter: brightness(1.02);
   box-shadow: 0 10px 22px rgba(20, 184, 166, 0.3);
 }
@@ -985,18 +1033,18 @@ body.gd-body {
 }
 .gd-results__test-link:hover .gd-test-chip {
   filter: brightness(1.03);
-  transform: translateY(-1px);
+  transform: translateY(calc(-1 * var(--gd-raise-sm)));
 }
 .gd-test-chip {
   display: inline-flex;
   align-items: center;
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-  padding-left: calc(0.875rem + var(--gd-cta-arrow-space));
-  padding-right: 0.75rem;
+  padding-top: var(--gd-chip-pad-y);
+  padding-bottom: var(--gd-chip-pad-y);
+  padding-left: calc(var(--gd-chip-pad-x-base) + var(--gd-cta-arrow-space));
+  padding-right: var(--gd-chip-pad-right);
   border-radius: 10px; /* less rounded */
   background-image: var(--gd-gradient-primary-soft);
-  color: var(--gd-text-inverse);
+  color: var(--gd-text-primary);
   text-decoration: none;
   font-weight: 600; /* less bold */
   letter-spacing: 0.005em;
@@ -1010,7 +1058,7 @@ body.gd-body {
   content: '→';
   margin-left: 0.5rem;
   opacity: 0;
-  transform: translateX(-4px);
+  transform: translateX(calc(-1 * var(--gd-arrow-slide-offset)));
   transition: transform var(--gd-transition-normal), opacity var(--gd-transition-normal);
 }
 .gd-test-chip:hover::after {

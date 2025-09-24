@@ -211,7 +211,7 @@ class GDResultsGenerator {
       <div class="gd-results__content">
         <div class="gd-results__success-box">
           <p class="gd-results__success-text">Tham khảo các giải pháp điều trị và phòng ngừa</p>
-          <button class="gd-btn gd-btn--success gd-mt-2">Nhà thuốc →</button>
+          <button class="gd-btn gd-btn--success gd-mt-2">Nhà thuốc </button>
         </div>
       </div>
     `;
