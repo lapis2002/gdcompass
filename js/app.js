@@ -95,12 +95,7 @@ class GDDOMManager {
   updateHeader(stepId) {
     // Always show the header when showing a step (not a result page)
     this.elements.mainHeader.style.display = 'block';
-    
-    if (stepId === GD_CONFIG.STEPS.DISCLAIMER || stepId === GD_CONFIG.STEPS.START) {
-      this.elements.headerDescription.innerHTML = 'Chỉ với 2 phút, <span class="gd-soft-highlight">GDCompass™</span> giúp bạn tìm hiểu nguy cơ mắc bệnh xã hội và các xét nghiệm có thể phù hợp với bạn.';
-    } else {
-      this.elements.headerDescription.innerHTML = this.getOriginalDisclaimerText();
-    }
+    this.elements.headerDescription.innerHTML = 'Chỉ với 2 phút, <span class="gd-soft-highlight">GDCompass™</span> giúp bạn tìm hiểu nguy cơ mắc bệnh xã hội và các xét nghiệm có thể phù hợp với bạn.';
   }
 
   getOriginalDisclaimerText() {

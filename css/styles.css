@@ -147,7 +147,7 @@ body {
 
 .gd-header__description {
   font-size: var(--gd-font-size-base);
-  color: var(--gd-text-secondary);
+  color: var(--gd-text-primary);
   margin: 0;
   line-height: 1.6;
 }
