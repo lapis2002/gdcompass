@@ -8,8 +8,8 @@
    ========================================================================== */
 :root {
   /* Colors */
-  --gd-color-primary: #3b82f6;
-  --gd-color-primary-hover: #2563eb;
+  --gd-color-primary: #14b8a6; /* teal-500 */
+  --gd-color-primary-hover: #0d9488; /* teal-600 */
   --gd-color-secondary: #6b7280;
   --gd-color-secondary-hover: #4b5563;
   --gd-color-success: #10b981;
@@ -23,6 +23,7 @@
   --gd-bg-primary: #ffffff;
   --gd-bg-secondary: #f9fafb;
   --gd-bg-tertiary: #f3f4f6;
+  --gd-bg-soft: #f0fdfa; /* soft teal background */
   --gd-bg-success: #ecfdf5;
   --gd-bg-warning: #fffbeb;
   --gd-bg-danger: #fef2f2;
@@ -37,6 +38,10 @@
   --gd-border-primary: #e5e7eb;
   --gd-border-secondary: #d1d5db;
   --gd-border-focus: var(--gd-color-primary);
+
+  /* Gradients */
+  --gd-gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 50%, #0d9488 100%);
+  --gd-gradient-soft: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%);
   
   /* Spacing */
   --gd-spacing-xs: 0.25rem;
@@ -776,3 +781,142 @@ body {
   100% { transform: translateY(0) scale(1); opacity: 1; }
 }
 
+
+/* ==========================================================================
+   UI Revamp Overrides (teal theme, modern cards/buttons/effects)
+   These styles are appended to safely override earlier defaults
+   ========================================================================== */
+
+/* Soften page background */
+body.gd-body {
+  background: var(--gd-gradient-soft);
+}
+
+/* Main card refinement */
+.gd-main {
+  border: 1px solid rgba(13, 148, 136, 0.12);
+  background: linear-gradient(180deg, #ffffff 0%, rgba(240, 253, 250, 0.4) 100%);
+  box-shadow: 0 10px 30px rgba(20, 184, 166, 0.12);
+}
+
+/* Header */
+.gd-header__title {
+  letter-spacing: -0.01em;
+}
+.gd-header__description {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Primary Button - gradient, elevation, crisp focus */
+.gd-btn--primary {
+  background-image: var(--gd-gradient-primary);
+  border: none;
+  box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
+}
+.gd-btn--primary:hover {
+  filter: brightness(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(20, 184, 166, 0.45);
+}
+.gd-btn--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
+}
+
+/* Secondary Button - softer */
+.gd-btn--secondary {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+}
+.gd-btn--secondary:hover {
+  background-color: #eef2f7;
+}
+
+/* Option cards - more tactile */
+.gd-option__card {
+  padding: calc(var(--gd-spacing-md) + 2px) var(--gd-spacing-lg);
+  border-radius: 14px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.04);
+}
+.gd-option__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.15);
+  border-color: rgba(13, 148, 136, 0.35);
+}
+.gd-option__input:checked + .gd-option__card {
+  background: #ecfeff; /* very light aqua */
+  border-color: var(--gd-color-primary);
+  box-shadow: 0 6px 18px rgba(20, 184, 166, 0.18);
+}
+
+/* Checkboxes - card-like rows */
+.gd-checkbox {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: var(--gd-spacing-sm) var(--gd-spacing-md);
+  transition: box-shadow var(--gd-transition-fast), border-color var(--gd-transition-fast), transform var(--gd-transition-fast);
+}
+.gd-checkbox:hover {
+  border-color: rgba(13, 148, 136, 0.35);
+  box-shadow: 0 6px 16px rgba(13, 148, 136, 0.12);
+  transform: translateY(-1px);
+}
+.gd-checkbox__input {
+  border-color: #cbd5e1;
+}
+.gd-checkbox__input:checked {
+  border-color: var(--gd-color-primary);
+  background-color: var(--gd-color-primary);
+}
+
+/* Step title spacing */
+.gd-step__title {
+  margin-bottom: var(--gd-spacing-sm);
+}
+
+/* Disclaimer text tone */
+.gd-disclaimer__text {
+  color: #0f172a; /* slate-900 */
+}
+
+/* Results test links to pill chips */
+.gd-results__test-link {
+  border: 1px solid rgba(13, 148, 136, 0.35);
+  border-radius: 999px;
+  padding: 0.625rem 1rem;
+  background: #ffffff;
+}
+.gd-results__test-link:hover {
+  background: #ecfeff;
+  border-color: var(--gd-color-primary);
+}
+
+/* Dropdown refinement */
+.gd-dropdown {
+  border-color: rgba(13, 148, 136, 0.25);
+  box-shadow: 0 8px 24px rgba(13, 148, 136, 0.12);
+}
+.gd-dropdown__header {
+  background: #f0fdfa;
+}
+.gd-dropdown__content {
+  background: #f0fdfa;
+}
+
+/* Navigation: elevate and sticky on mobile */
+@media (max-width: 480px) {
+  .gd-navigation {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.75) 0%, #ffffff 80%);
+    backdrop-filter: saturate(1.2) blur(6px);
+    padding-bottom: var(--gd-spacing-sm);
+    border-top: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 -6px 16px rgba(2, 132, 199, 0.08);
+  }
+}
