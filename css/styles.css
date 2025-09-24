@@ -424,7 +424,7 @@ body {
   color: var(--gd-text-primary);
   line-height: 1.6;
   margin: 0 0 var(--gd-spacing-md) 0;
-  text-align: left;
+  text-align: center;
 }
 
 .gd-disclaimer__text:last-child {
