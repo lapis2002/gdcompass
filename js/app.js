@@ -3,7 +3,7 @@
  * Modular JavaScript application with consistent naming conventions
  */
 
-import { GD_CONFIG, GD_SYMPTOMS_DATA, DISEASE_CODE, BASIC_TEST_PACKAGES, COMMON_TEST_PACKAGES, HPV_TEST_PACKAGE } from "./constants.js";
+import { GD_CONFIG, GD_SYMPTOMS_DATA, DISEASE_CODE, BASIC_TEST_PACKAGES, COMMON_TEST_PACKAGES, HPV_TEST_PACKAGE, GD_TEST_CODE } from "./constants.js";
 
 
 // ==========================================================================
@@ -236,7 +236,17 @@ class GDResultsGenerator {
   }
 
   static generateTestLink(testPackage) {
-    return `<a href="#" hover:no-underline" class="gd-result__test_link">${testPackage}</a>`
+    return `<a href="#" class="gd-result__test_link" aria-label="${testPackage}">${testPackage}</a>`
+  }
+
+  static generateCombinedTestLink(leftPackage, rightPackage) {
+    return `
+      <div class="gd-test-combo">
+        <a href="#" class="gd-test-chip" aria-label="${leftPackage}">${leftPackage}</a>
+        <span class="gd-test-sep">và</span>
+        <a href="#" class="gd-test-chip" aria-label="${rightPackage}">${rightPackage}</a>
+      </div>
+    `;
   }
 
   static generatepathogenInfoHtml(pathogenInfoHtml) {
@@ -367,9 +377,13 @@ class GDResultsGenerator {
       COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(this.generateTestLink(testPackage)));
     }
     if (isOnlySuiMaoGa) {
-      BASIC_TEST_PACKAGES.map(testPackage => [this.generateTestLink(HPV_TEST_PACKAGE), this.generateTestLink(testPackage)].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
+      BASIC_TEST_PACKAGES
+        .map(testPackage => this.generateCombinedTestLink(GD_TEST_CODE.HPV, testPackage))
+        .forEach(combinedPackage => testLists.push(combinedPackage));
     } else if (Array.from(checkedSymptoms).some(cb => cb.getAttribute('data-id') === SUIMAOGA_ID)) {
-      COMMON_TEST_PACKAGES.map(testPackage => [this.generateTestLink(HPV_TEST_PACKAGE), this.generateTestLink(testPackage)].join(" và ")).forEach(combinedPackage => testLists.push(combinedPackage));
+      COMMON_TEST_PACKAGES
+        .map(testPackage => this.generateCombinedTestLink(GD_TEST_CODE.HPV, testPackage))
+        .forEach(combinedPackage => testLists.push(combinedPackage));
 
     } else {
       COMMON_TEST_PACKAGES.forEach(testPackage => testLists.push(this.generateTestLink(testPackage)));
