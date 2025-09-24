@@ -8,8 +8,8 @@
    ========================================================================== */
 :root {
   /* Colors */
-  --gd-color-primary: #6366f1; /* indigo-500 */
-  --gd-color-primary-hover: #4f46e5; /* indigo-600 */
+  --gd-color-primary: #14b8a6; /* teal-500 */
+  --gd-color-primary-hover: #0d9488; /* teal-600 */
   --gd-color-secondary: #6b7280;
   --gd-color-secondary-hover: #4b5563;
   --gd-color-success: #10b981;
@@ -23,7 +23,7 @@
   --gd-bg-primary: #ffffff;
   --gd-bg-secondary: #f9fafb;
   --gd-bg-tertiary: #f3f4f6;
-  --gd-bg-soft: #eef2ff; /* soft indigo background */
+  --gd-bg-soft: #f0fdfa; /* soft teal background */
   --gd-bg-success: #ecfdf5;
   --gd-bg-warning: #fffbeb;
   --gd-bg-danger: #fef2f2;
@@ -40,15 +40,10 @@
   --gd-border-focus: var(--gd-color-primary);
 
   /* Gradients */
-  --gd-gradient-primary: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #4f46e5 100%);
+  --gd-gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 50%, #0d9488 100%);
   /* Softer gradient for less highlight CTAs */
-  --gd-gradient-primary-soft: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 50%, #93c5fd 100%);
-  --gd-gradient-soft: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
-  /* Button-specific (Palette A - Violet) */
-  --gd-gradient-button: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
-  --gd-button-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
-  --gd-button-shadow-hover: 0 10px 22px rgba(124, 58, 237, 0.45);
-  --gd-button-shadow-active: 0 6px 16px rgba(124, 58, 237, 0.35);
+  --gd-gradient-primary-soft: linear-gradient(135deg, #67e8f9 0%, #5eead4 50%, #2dd4bf 100%);
+  --gd-gradient-soft: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%);
   /* UI spacing tokens */
   --gd-cta-arrow-space: 0.75rem;
   /* Component spacing tokens (reduce magic numbers) */
@@ -661,20 +656,20 @@ body {
 
 .gd-dropdown__body {
   padding: var(--gd-spacing-md);
-  background-color: #eef2ff; /* indigo-50 */
-  border-top: 1px solid rgba(79, 70, 229, 0.15);
+  background-color: #f0fdfa; /* teal-soft to match header/content */
+  border-top: 1px solid rgba(13, 148, 136, 0.15);
 }
 
 .gd-results__success-box {
   padding: var(--gd-spacing-md);
   background: var(--gd-bg-soft);
-  border: 1px solid rgba(79, 70, 229, 0.25);
+  border: 1px solid rgba(13, 148, 136, 0.25);
   border-radius: var(--gd-radius-lg);
   margin: var(--gd-spacing-md) 0;
 }
 
 .gd-results__success-text {
-  color: #4338ca; /* indigo-700 */
+  color: #0f766e; /* teal-700 */
   font-weight: 600;
   font-size: var(--gd-font-size-base);
   line-height: 1.5;
@@ -839,7 +834,7 @@ body.gd-body {
 .gd-main {
   border: 1px solid rgba(13, 148, 136, 0.12);
   background: linear-gradient(180deg, #ffffff 0%, rgba(240, 253, 250, 0.4) 100%);
-  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.12);
+  box-shadow: 0 10px 30px rgba(20, 184, 166, 0.12);
 }
 
 /* Header */
@@ -854,18 +849,18 @@ body.gd-body {
 
 /* Primary Button - gradient, elevation, crisp focus */
 .gd-btn--primary {
-  background-image: var(--gd-gradient-button);
+  background-image: var(--gd-gradient-primary);
   border: none;
-  box-shadow: var(--gd-button-shadow);
+  box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
 }
 .gd-btn--primary:hover {
   filter: brightness(1.02);
   transform: translateY(-2px);
-  box-shadow: var(--gd-button-shadow-hover);
+  box-shadow: 0 10px 22px rgba(20, 184, 166, 0.45);
 }
 .gd-btn--primary:active {
   transform: translateY(0);
-  box-shadow: var(--gd-button-shadow-active);
+  box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
 }
 
 /* Secondary Button - softer */
@@ -879,10 +874,10 @@ body.gd-body {
 
 /* Success Button (e.g., 'Nhà thuốc') - align with primary theme */
 .gd-btn--success {
-  background-image: var(--gd-gradient-button);
+  background-image: var(--gd-gradient-primary);
   color: var(--gd-text-inverse);
   border: none;
-  box-shadow: var(--gd-button-shadow);
+  box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
   position: relative;
   /* Always reserve space for the arrow so it never overlaps the text */
   padding-right: calc(var(--gd-spacing-lg)  + 0.5rem);
@@ -890,11 +885,11 @@ body.gd-body {
 .gd-btn--success:hover {
   filter: brightness(1.02);
   transform: translateY(-2px);
-  box-shadow: var(--gd-button-shadow-hover);
+  box-shadow: 0 10px 22px rgba(20, 184, 166, 0.45);
 }
 .gd-btn--success:active {
   transform: translateY(0);
-  box-shadow: var(--gd-button-shadow-active);
+  box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
 }
 
 /* Right arrow appears on hover (Nhà thuốc CTA) */
@@ -919,17 +914,17 @@ body.gd-body {
   border-radius: 14px;
   border: 1.5px solid #e2e8f0;
   background: #ffffff;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.06);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.04);
 }
 .gd-option__card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 22px rgba(79, 70, 229, 0.15);
-  border-color: rgba(79, 70, 229, 0.35);
+  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.15);
+  border-color: rgba(13, 148, 136, 0.35);
 }
 .gd-option__input:checked + .gd-option__card {
-  background: #eef2ff; /* indigo-50 */
+  background: #ecfeff; /* very light aqua */
   border-color: var(--gd-color-primary);
-  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.18);
+  box-shadow: 0 6px 18px rgba(20, 184, 166, 0.18);
 }
 
 /* Checkboxes - card-like rows */
@@ -941,8 +936,8 @@ body.gd-body {
   transition: box-shadow var(--gd-transition-fast), border-color var(--gd-transition-fast), transform var(--gd-transition-fast);
 }
 .gd-checkbox:hover {
-  border-color: rgba(79, 70, 229, 0.35);
-  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.12);
+  border-color: rgba(13, 148, 136, 0.35);
+  box-shadow: 0 6px 16px rgba(13, 148, 136, 0.12);
   transform: translateY(-1px);
 }
 .gd-checkbox__input {
@@ -967,17 +962,17 @@ body.gd-body {
 .gd-results__test-link {
   margin: var(--gd-spacing-sm) 0;
   padding: var(--gd-row-pad-y) var(--gd-row-pad-x);
-  border: 1px solid rgba(79, 70, 229, 0.35); /* indigo-600 */
+  border: 1px solid rgba(13, 148, 136, 0.35);
   border-radius: 10px;
-  background: #eef2ff; /* indigo-50 as default so touch users see emphasis */
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.12);
+  background: #f0fdfa; /* soft teal as default so touch users see emphasis */
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.12);
   transition: background-color var(--gd-transition-normal), box-shadow var(--gd-transition-normal), border-color var(--gd-transition-normal), transform var(--gd-transition-normal);
 }
 /* On hover of the entire suggestion row: light emphasis */
 .gd-results__test-link:hover {
-  background: #e0e7ff; /* indigo-100 */
-  border-color: rgba(79, 70, 229, 0.5);
-  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.16);
+  background: #e6fffb; /* slightly brighter */
+  border-color: rgba(13, 148, 136, 0.5);
+  box-shadow: 0 6px 16px rgba(13, 148, 136, 0.16);
   transform: translateY(calc(-1 * var(--gd-raise-md)));
 }
 /* Also gently amplify inner CTAs when the row is hovered */
@@ -1083,21 +1078,21 @@ body.gd-body {
 
 /* Dropdown refinement */
 .gd-dropdown {
-  border-color: rgba(79, 70, 229, 0.25);
-  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.12);
+  border-color: rgba(13, 148, 136, 0.25);
+  box-shadow: 0 8px 24px rgba(13, 148, 136, 0.12);
   transition: background-color var(--gd-transition-normal), border-color var(--gd-transition-normal), box-shadow var(--gd-transition-normal);
 }
 .gd-dropdown__header {
-  background: #eef2ff; /* indigo-50 */
+  background: #f0fdfa; /* teal-soft */
   transition: background-color var(--gd-transition-fast), border-color var(--gd-transition-fast);
 }
 .gd-dropdown__content {
-  background: #eef2ff; /* indigo-50 */
+  background: #f0fdfa; /* teal-soft */
   transition: background-color var(--gd-transition-normal);
 }
 
 .gd-dropdown__header:hover {
-  background: #e0e7ff; /* indigo-100 */
+  background: #ccfbf1; /* slightly stronger teal on hover */
 }
 
 /* Navigation: elevate and sticky on mobile */
@@ -1109,6 +1104,6 @@ body.gd-body {
     backdrop-filter: saturate(1.2) blur(6px);
     padding-bottom: var(--gd-spacing-sm);
     border-top: 1px solid rgba(148, 163, 184, 0.25);
-    box-shadow: 0 -6px 16px rgba(79, 70, 229, 0.1);
+    box-shadow: 0 -6px 16px rgba(2, 132, 199, 0.08);
   }
 }

@@ -104,14 +104,14 @@ export const GD_CONFIG = {
     },
     { 
       id: "s5", 
-      text: "Xuất hiện vết loét hoặc mụn nước quanh cơ quan sinh dục, hậu môn, miệng, hoặc lưỡi", 
+      text: "Xuất hiện vết loét hoặc mụn nước quanh cơ quan sinh dục, hậu môn, miệng, hoặc lưỡi.", 
       // risk: "Giang mai, HSV",
       risk: [DISEASE_CODE.GIANGMAI, DISEASE_CODE.HSV], 
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s6", 
-      text: "Xuất hiện nốt sùi hoặc mụn cóc quanh cơ quan sinh dục, hậu môn, miệng, hoặc lưỡi", 
+      text: "Xuất hiện nốt sùi hoặc mụn cóc quanh cơ quan sinh dục, hậu môn, miệng, hoặc lưỡi.", 
       // risk: "Sùi mào gà", 
       risk: [DISEASE_CODE.SUIMAOGA],
       tests: [GD_TEST_CODE.HPV]
