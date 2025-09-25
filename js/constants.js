@@ -43,11 +43,11 @@ export const GD_CONFIG = {
   export const DISEASE_CODE = {
     LAU: {
       name: "Lậu",
-      description: `<p><strong>Lậu:</strong> Lậu do vi khuẩn <i>Neisseria gonorrhoeae</i> gây ra. Nếu không chẩn đoán và điều trị kịp thời, có thể dẫn đến vô sinh, thai ngoài tử cung, hẹp đường tiểu.</p>`,
+      description: `<p><strong>Lậu:</strong> Lậu do vi khuẩn <i>Neisseria gonorrhoeae</i> gây ra. Nếu không chẩn đoán và điều trị kịp thời, có thể dẫn đến vô sinh, thai ngoài tử cung, hẹp đường tiểu...</p>`,
     },
     CHLAMYDIA: {
       name: "Chlamydia",
-      description: `<p><strong>Chlamydia:</strong> Chlamydia do vi khuẩn <i>Chlamydia trachomatis</i> gây ra. Nếu không chẩn đoán và điều trị kịp thời, có thể dẫn đến vô sinh, thai ngoài tử cung, hẹp đường tiểu.</p>`,
+      description: `<p><strong>Chlamydia:</strong> Chlamydia do vi khuẩn <i>Chlamydia trachomatis</i> gây ra. Nếu không chẩn đoán và điều trị kịp thời, có thể dẫn đến vô sinh, thai ngoài tử cung, hẹp đường tiểu...</p>`,
     },
     GIANGMAI: {
       name: "Giang mai",
