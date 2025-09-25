@@ -249,7 +249,7 @@ class GDResultsGenerator {
     `;
   }
 
-  static generatepathogenInfoHtml(pathogenInfoHtml) {
+  static generatePathogenInfoHtml(pathogenInfoHtml) {
     return `
       <div class="gd-dropdown" id="medical-info-dropdown">
         <div class="gd-dropdown__header">
@@ -331,7 +331,7 @@ class GDResultsGenerator {
         </div>
         ${this.generateTestSuggestionSection(suggestedTestsHtml)}
 
-        ${this.generatepathogenInfoHtml(pathogenInfoHtml)}
+        ${this.generatePathogenInfoHtml(pathogenInfoHtml)}
 
         <div class="gd-results__section gd-text-center">
           <p class="gd-results__text">Chúng tôi luôn sẵn sàng lắng nghe và đồng hành cùng bạn xuyên suốt mọi giai đoạn - tư vấn, chẩn đoán, điều trị và sau điều trị.</p>
@@ -416,9 +416,9 @@ class GDResultsGenerator {
     const content = dropdown.querySelector('.gd-dropdown__content');
     const icon = dropdown.querySelector('.gd-dropdown__icon');
 
-    // Set initial state as expanded
-    content.classList.add('gd-dropdown__content--expanded');
-    icon.classList.add('gd-dropdown__icon--rotated');
+    // Uncomment to set initial state as expanded
+    // content.classList.add('gd-dropdown__content--expanded');
+    // icon.classList.add('gd-dropdown__icon--rotated');
 
     header.addEventListener('click', () => {
       const isExpanded = content.classList.contains('gd-dropdown__content--expanded');

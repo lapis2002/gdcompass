@@ -660,6 +660,14 @@ body {
   border-top: 1px solid rgba(13, 148, 136, 0.15);
 }
 
+.gd-dropdown__body p {
+  margin-bottom: var(--gd-spacing-md);
+}
+
+.gd-dropdown__body p:last-child {
+  margin-bottom: 0;
+}
+
 .gd-results__success-box {
   padding: var(--gd-spacing-md);
   background: var(--gd-bg-soft);

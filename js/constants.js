@@ -41,9 +41,13 @@ export const GD_CONFIG = {
   
   
   export const DISEASE_CODE = {
-    LAU_CHLAMYDIA: {
-      name: "Lậu, Chlamydia",
-      description: `<p><strong>Lậu và Chlamydia:</strong> Lậu do vi khuẩn <i>Neisseria gonorrhoeae</i> và Chlamydia do vi khuẩn <i>Chlamydia trachomatis</i> gây ra. Nếu không chẩn đoán và điều trị kịp thời, có thể dẫn đến vô sinh, thai ngoài tử cung, hẹp đường tiểu.</p>`,
+    LAU: {
+      name: "Lậu",
+      description: `<p><strong>Lậu:</strong> Lậu do vi khuẩn <i>Neisseria gonorrhoeae</i> gây ra. Nếu không chẩn đoán và điều trị kịp thời, có thể dẫn đến vô sinh, thai ngoài tử cung, hẹp đường tiểu.</p>`,
+    },
+    CHLAMYDIA: {
+      name: "Chlamydia",
+      description: `<p><strong>Chlamydia:</strong> Chlamydia do vi khuẩn <i>Chlamydia trachomatis</i> gây ra. Nếu không chẩn đoán và điều trị kịp thời, có thể dẫn đến vô sinh, thai ngoài tử cung, hẹp đường tiểu.</p>`,
     },
     GIANGMAI: {
       name: "Giang mai",
@@ -81,25 +85,25 @@ export const GD_CONFIG = {
     { 
       id: "s1", 
       text: "Ngứa vùng sinh dục (âm đạo, dương vật, hậu môn)", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA], 
+      risk: [DISEASE_CODE.LAU, DISEASE_CODE.CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s2", 
       text: "Dịch tiết bất thường từ dương vật hoặc âm đạo hoặc hậu môn", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA], 
+      risk: [DISEASE_CODE.LAU, DISEASE_CODE.CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE] 
     },
     { 
       id: "s3", 
       text: "Tiểu buốt, tiểu gắt hoặc cảm giác nóng rát khi đi tiểu", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA], 
+      risk: [DISEASE_CODE.LAU, DISEASE_CODE.CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE] 
     },
     { 
       id: "s4", 
       text: "Đau hoặc chảy máu khi quan hệ tình dục", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA], 
+      risk: [DISEASE_CODE.LAU, DISEASE_CODE.CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
@@ -120,21 +124,21 @@ export const GD_CONFIG = {
       id: "s7", 
       text: "Sưng đau tinh hoàn, bìu", 
       // risk: "Lậu, Chlamydia", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA],
+      risk: [DISEASE_CODE.LAU, DISEASE_CODE.CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s8", 
       text: "Đau vùng bụng từ rốn trở xuống (đau bụng dưới)", 
       // risk: "Lậu, Chlamydia", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA],
+      risk: [DISEASE_CODE.LAU, DISEASE_CODE.CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
       id: "s9", 
       text: "Đau rát họng, viêm họng hoặc ho kéo dài dai dẳng", 
       // risk: "Lậu, Chlamydia", 
-      risk: [DISEASE_CODE.LAU_CHLAMYDIA],
+      risk: [DISEASE_CODE.LAU, DISEASE_CODE.CHLAMYDIA],
       tests: [GD_TEST_CODE.SPECIAL, GD_TEST_CODE.ADVANCE]
     },
     { 
