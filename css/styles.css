@@ -431,10 +431,18 @@ body {
   justify-content: center;
 }
 
+/* Navigation: elevate and sticky on mobile */
 @media (max-width: 480px) {
   .gd-navigation {
     flex-direction: column;
     gap: var(--gd-spacing-sm);
+    position: sticky;
+    bottom: 0;
+    background: transparent;
+    backdrop-filter: none;
+    padding-bottom: var(--gd-spacing-sm);
+    border-top: none;
+    box-shadow: none;
   }
   
   .gd-navigation .gd-btn {
@@ -1103,15 +1111,3 @@ body.gd-body {
   background: #ccfbf1; /* slightly stronger teal on hover */
 }
 
-/* Navigation: elevate and sticky on mobile */
-@media (max-width: 480px) {
-  .gd-navigation {
-    position: sticky;
-    bottom: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,0.75) 0%, #ffffff 80%);
-    backdrop-filter: saturate(1.2) blur(6px);
-    padding-bottom: var(--gd-spacing-sm);
-    border-top: 1px solid rgba(148, 163, 184, 0.25);
-    box-shadow: 0 -6px 16px rgba(2, 132, 199, 0.08);
-  }
-}
