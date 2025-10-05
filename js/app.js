@@ -80,6 +80,10 @@ class GDDOMManager {
     // setTimeout(() => {
     //   targetStep?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     // }, 0);
+    requestAnimationFrame(() => {
+      document.querySelector('.gd-main')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+    });
   }
 
   updateNavigationButtons() {
@@ -200,9 +204,13 @@ class GDResultsGenerator {
     this.setupDropdownToggle();
 
     // Smooth scroll to results
-    setTimeout(() => {
-      domManager.elements.resultsContainer?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 0);
+    // setTimeout(() => {
+    //   domManager.elements.resultsContainer?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // }, 0);
+    requestAnimationFrame(() => {
+      document.querySelector('.gd-main')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+    });
   }
 
   static generateDiagnosedResult() {
@@ -487,6 +495,10 @@ class GDStepNavigator {
         } else {
           GDStepNavigator.generateSymptomsList();
           domManager.showStep(GD_CONFIG.STEPS.SYMPTOM_CHECKLIST);
+          requestAnimationFrame(() => {
+            document.querySelector('.gd-main')
+              ?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+          });
         }
         break;
         
