@@ -365,7 +365,7 @@ class GDResultsGenerator {
 
   static generatePathogenInfo(allRisks) {
     let pathogenInfoHtml = '';
-    allRisks.forEach(risk => pathogenInfoHtml += risk.description);
+    allRisks.forEach(risk => pathogenInfoHtml += `<p><span class="gd-results__highlight">${risk.name}</span>: ${risk.description}</p>`);
     return pathogenInfoHtml;
   }
 
