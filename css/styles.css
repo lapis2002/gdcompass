@@ -31,6 +31,7 @@
   /* Text Colors */
   --gd-text-primary: #111827;
   --gd-text-secondary: #6b7280;
+  --gd-text-medium: #064e3b;
   --gd-text-tertiary: #9ca3af;
   --gd-text-inverse: #ffffff;
   
@@ -1014,7 +1015,7 @@ body.gd-body {
   padding-right: var(--gd-cta-pad-right);
   border-radius: 8px;
   background-image: var(--gd-gradient-primary);
-  color: var(--gd-text-secondary);
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600; /* less bold */
   letter-spacing: 0.005em;
