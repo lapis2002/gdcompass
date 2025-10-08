@@ -1015,7 +1015,7 @@ body.gd-body {
   padding-right: var(--gd-cta-pad-right);
   border-radius: 8px;
   background-image: var(--gd-gradient-primary-medium);
-  color: var(--gd-text-medium);
+  color: var(--gd-text-primary);
   text-decoration: none;
   font-weight: 600; /* less bold */
   letter-spacing: 0.005em;
@@ -1064,7 +1064,7 @@ body.gd-body {
   padding-right: var(--gd-chip-pad-right);
   border-radius: 8px;
   background-image: var(--gd-gradient-primary-medium);
-  color: var(--gd-text-medium);
+  color: var(--gd-text-primary);
   text-decoration: none;
   font-weight: 600; /* less bold */
   letter-spacing: 0.005em;
