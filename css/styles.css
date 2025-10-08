@@ -43,7 +43,7 @@
   --gd-gradient-primary: linear-gradient(135deg, #a3e635 0%, #22c55e 50%, #10b981 100%);
   /* Softer gradient for less highlight CTAs */
   --gd-gradient-primary-soft: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 50%, #a7f3d0 100%);
-  --gd-gradient-primary-medium: linear-gradient(135deg, #d9f99d 0%, #86efac 50%, #6ee7b7 100%);
+  --gd-gradient-primary-medium: linear-gradient(135deg, #bef264 0%, #86efac 50%, #6ee7b7 100%);
   --gd-gradient-soft: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%);
   /* UI spacing tokens */
   --gd-cta-arrow-space: 0.75rem;
