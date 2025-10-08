@@ -43,7 +43,7 @@
   --gd-gradient-primary: linear-gradient(135deg, #a3e635 0%, #22c55e 50%, #10b981 100%);
   /* Softer gradient for less highlight CTAs */
   --gd-gradient-primary-soft: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 50%, #a7f3d0 100%);
-  --gd-gradient-primary-medium: linear-gradient(135deg, #bbf7d0 0%, #86efac 50%, #6ee7b7 100%);
+  --gd-gradient-primary-medium: linear-gradient(135deg, #d9f99d 0%, #86efac 50%, #6ee7b7 100%);
   --gd-gradient-soft: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%);
   /* UI spacing tokens */
   --gd-cta-arrow-space: 0.75rem;
@@ -1061,7 +1061,7 @@ body.gd-body {
   padding-bottom: var(--gd-chip-pad-y);
   padding-left: calc(var(--gd-chip-pad-x-base) + var(--gd-cta-arrow-space));
   padding-right: var(--gd-chip-pad-right);
-  border-radius: 10px; /* less rounded */
+  border-radius: 8px;
   background-image: var(--gd-gradient-primary-medium);
   color: #064e3b;
   text-decoration: none;
