@@ -1014,8 +1014,8 @@ body.gd-body {
   padding-left: calc(var(--gd-cta-pad-x-base) + var(--gd-cta-arrow-space));
   padding-right: var(--gd-cta-pad-right);
   border-radius: 8px;
-  background-image: var(--gd-gradient-primary);
-  color: #ffffff;
+  background-image: var(--gd-gradient-primary-medium);
+  color: var(--gd-text-medium);
   text-decoration: none;
   font-weight: 600; /* less bold */
   letter-spacing: 0.005em;
@@ -1063,8 +1063,8 @@ body.gd-body {
   padding-left: calc(var(--gd-chip-pad-x-base) + var(--gd-cta-arrow-space));
   padding-right: var(--gd-chip-pad-right);
   border-radius: 8px;
-  background-image: var(--gd-gradient-primary);
-  color: #ffffff;
+  background-image: var(--gd-gradient-primary-medium);
+  color: var(--gd-text-medium);
   text-decoration: none;
   font-weight: 600; /* less bold */
   letter-spacing: 0.005em;
