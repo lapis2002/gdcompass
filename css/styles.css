@@ -543,6 +543,11 @@ body {
   color: var(--gd-color-primary);
 }
 
+.gd-results__soft-highlight {
+  font-weight: 700;
+  color: var(--gd-text-medium);
+}
+
 /* Softer inline emphasis for body text */
 .gd-soft-highlight {
   font-weight: 600;
