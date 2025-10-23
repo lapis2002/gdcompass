@@ -545,7 +545,7 @@ body {
 
 .gd-results__soft-highlight {
   font-weight: 700;
-  color: var(--gd-text-medium);
+  color: var(--gd-text-primary);
 }
 
 /* Softer inline emphasis for body text */
